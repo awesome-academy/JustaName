@@ -1,9 +1,0 @@
-<%= link_to(laptop_path(laptop)) do %>
-	<div class="lap-contentBx">
-	    <h3><%= laptop.title %></h3>
-	    <p><%= laptop.price %></p>
-	    <div class="lap-img">
-	    	<%= image_tag laptop.image if laptop.image.attached? %>
-	    </div>
-	</div>
-<% end %>

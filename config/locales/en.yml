@@ -31,3 +31,17 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      laptop:
+        brands:
+          macbook: "Macbook"
+          surface: "Surface"
+          dell: "Dell"
+          razer: "Razer"
+          asus: "Asus"
+          lg: "LG"
+          hp: "HP"
+          acer: "Acer"
+          lenovo: "Lenovo"
+          msi: "MSI"

@@ -99,13 +99,13 @@
         <section class="content products good-price">
             <h2>SAN PHAM APPLE GIA TOT</h2>
             <div class="lap-content">
-                <%= render @laptops.macbook.macbook_good_price %>
+                <%= render @laptops.macbook.good_price.limit(6) %>
             </div>
         </section>
         <section class="content products hightlight">
             <h2>MICROSOFT SURFACE NOI BAT</h2>
             <div class="lap-content">
-                <%= render @laptops.surface %>
+                <%= render @laptops.surface.lastest.limit(6) %>
             </div>
         </section>
         <section class="content products hot">
