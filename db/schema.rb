@@ -28,9 +28,8 @@ ActiveRecord::Schema.define(version: 2020_12_11_034832) do
 
   create_table "laptops", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
-    t.integer "distribute"
-    t.text "content"
-    t.decimal "price", precision: 10
+    t.text "description"
+    t.string "price"
     t.text "brand"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

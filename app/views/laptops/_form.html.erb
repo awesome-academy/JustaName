@@ -1,0 +1,27 @@
+<%= form_for(@laptop) do |f| %>
+    <% if @laptop.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@laptop.errors.count, "error") %> prohibited this laptop from being saved:</h2>
+            <ul>
+            <% @laptop.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+            </ul>
+        </div>
+    <% end %>
+        <%= f.label "Title" %>
+        <%= f.text_field :title , id: "title" %>
+
+        <%= f.label "Brand" %>
+        <%= f.text_field :brand , id: "title" %>
+
+        <%= f.label "Price" %>
+        <%= f.number_field :price , id: "price" %>
+
+        <%= f.label "Description" %>
+        <%= f.text_area :description, :rows => 5 , class: "areaS" %>
+
+        <%= f.file_field :image %><br>
+
+        <%= f.submit "Create", class: "submit" %>
+<% end %>
