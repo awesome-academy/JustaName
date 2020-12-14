@@ -4,7 +4,7 @@ class CreateLaptops < ActiveRecord::Migration[6.0]
       t.string :title
       t.text :description
       t.string :price
-      t.text :brand
+      t.integer :brand
 
       t.timestamps
     end

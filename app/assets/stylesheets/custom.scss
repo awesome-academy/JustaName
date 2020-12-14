@@ -574,3 +574,45 @@
   from {opacity: 0.4;} 
   to {opacity: 1;}
 }
+
+/* Laptop New */
+
+.laptop-new-container
+{
+    width: 100%;
+    min-height: 80vh;
+    padding: 0 20%;
+    background-color: #f3f3f3;
+
+    .content
+    {
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        padding-top: 200px;
+        display: flex;
+        justify-content: center;
+
+        form
+        {
+            text-align: center;
+            width: 500px;
+
+            .formBx
+            {
+                text-align: left;
+                width: 100%;
+
+                .formIn
+                {
+                    width: 100%;
+                }
+            }
+
+            .submit
+            {
+                text-align: right;
+            }
+        }
+    } 
+}

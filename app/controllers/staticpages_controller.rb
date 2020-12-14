@@ -1,4 +1,5 @@
 class StaticpagesController < ApplicationController
-  def home
-  end
+	def home
+		@laptops = Laptop.all
+	end
 end
