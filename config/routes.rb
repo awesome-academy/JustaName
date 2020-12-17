@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users,
-    controllers:{omniauth_callbacks: "users/omniauth_callbacks"}
+  get 'sessions/new'
   root 'staticpages#home'
+  resources :laptops
+  devise_for :users,
+    controllers:{omniauth_callbacks: "users/omniauth_callbacks"} 
+
+
+
 end
 # as :user do
 #   get "signin" => "devise/sessions#new"
