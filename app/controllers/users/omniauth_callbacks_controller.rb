@@ -4,11 +4,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   
     def google_oauth2
+      # byebug
       generic_callback( "google" )
     end
   
     def generic_callback(provider)
+      # byebug
       @identity = User.from_omniauth(request.env["omniauth.auth"])
+
   
       @user = @identity || current_user
       if @user.persisted?
@@ -19,4 +22,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         redirect_to new_user_registration_url
       end
     end
+
+    def destroy
+      log_out
+      redirect_to root_url 
+    end
+
+    def failure
+      redirect_to root_path
+    end
+
   end

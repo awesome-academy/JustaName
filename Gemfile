@@ -8,6 +8,7 @@ gem 'turbolinks', '5.2.0'
 gem 'jbuilder', '2.9.1'
 gem 'bootsnap', '1.4.4', require: false
 gem 'figaro'
+gem 'bcrypt'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-twitter'
@@ -42,3 +43,4 @@ gem 'pg', '1.1.4'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'ransack'
