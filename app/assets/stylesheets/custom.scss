@@ -94,12 +94,13 @@
     color: #fff;
     font-size: 14px;
 }
+.header-sp
+{
+    width: 100%;
+    height: 72px;
+}
 .header
 {
-    position: absolute;
-    z-index: 10000;
-    top: 72px;
-    left: 0;
     width: 100%;
     padding: 10px 20%;
     background-color: #333;
@@ -249,7 +250,6 @@
 }
 .home-content
 {
-    margin-top: 110px;
     width: 100%;
     background-color: #f3f3f3;
     padding: 0 20%;
@@ -573,4 +573,249 @@
 @keyframes next {
   from {opacity: 0.4;} 
   to {opacity: 1;}
+}
+
+/* Laptop New */
+
+.laptop-new-container
+{
+    width: 100%;
+    height: 70vh;
+    padding: 0 20%;
+    background-color: #f3f3f3;
+
+    .content
+    {
+        width: 100%;
+        height: 70vh;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+
+        form
+        {
+            text-align: center;
+            width: 500px;
+
+            .formBx
+            {
+                text-align: left;
+                width: 100%;
+
+                .formIn
+                {
+                    width: 100%;
+                }
+            }
+
+            .submit
+            {
+                text-align: right;
+            }
+        }
+    } 
+}
+
+/* MACBOOK */
+
+.laptop-index-container
+{
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f3f3f3;
+    padding: 0 20% 30px 20%;
+
+    .page-point
+    {
+        width: 100%;
+        height: 50px;
+    }
+
+    .container
+    {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .filter
+        {
+            width: 270px;
+            background-color: #fff;
+            padding: 15px;
+            padding-top: 0;
+
+            h1
+            {
+                font-family: Arial;
+                font-size: 24px;
+                color: #333;
+                font-weight: 400;
+                line-height: 80px;
+            }
+            h2
+            {
+                font-family: Arial;
+                font-size: 20px;
+                color: #333;
+                font-weight: bold;
+                line-height: 50px;
+                border-top: 1px solid rgba(0,0,0,0.1);
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+            }
+            h3
+            {
+                font-family: Arial;
+                font-size: 18px;
+                color: #333;
+                font-weight: bold;
+                line-height: 50px;
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+
+                a{
+                    color: #333;
+                    text-decoration: none;
+
+                    &:hover{
+                        text-decoration: none;
+                    }
+                }
+            }
+            .category
+            {
+                width: 100%;
+                padding-top: 15px;
+                padding-bottom: 15px;
+
+                li
+                {
+                    list-style: none;
+                    margin-bottom: 20px;
+
+                    a
+                    {
+                        text-decoration: none;
+                        font-family: Arial;
+                        font-size: 16px;
+                        font-weight: 400px;
+                        color: #333;
+
+                        &:hover
+                        {
+                            text-decoration: none;
+                            color: #000;
+                        }
+                    }
+                }
+            }
+
+            .formBx.cpu
+            {
+                max-height: 200px;
+                overflow-y: auto;
+            }
+            .formBx
+            {
+                width: 100%;
+
+                form
+                {
+                    .checkBx {
+                      display: block;
+                      position: relative;
+                      cursor: pointer;
+                      margin: 15px 0;
+
+                      label{
+                        font-family: Arial;
+                        font-size: 16px;
+                        color: #333;
+                        margin-left: 25px;
+                      }
+                    }
+
+                    /* Hide the browser's default checkbox */
+                    .checkBx input {
+                      position: absolute;
+                      opacity: 0;
+                      cursor: pointer;
+                      height: 15px;
+                      width: 15px;
+                      z-index: 100;
+                    }
+
+                    /* Create a custom checkbox */
+                    .checkmark {
+                      position: absolute;
+                      top: 50%;
+                      transform: translateY(-50%);
+                      left: 0;
+                      height: 15px;
+                      width: 15px;
+                      background-color: #eee;
+                    }
+
+                    /* On mouse-over, add a grey background color */
+                    .checkBx:hover input ~ .checkmark {
+                      background-color: #ccc;
+                    }
+
+                    /* When the checkbox is checked, add a blue background */
+                    .checkBx input:checked ~ .checkmark {
+                      background-color: #2196F3;
+                    }
+
+                    /* Create the checkmark/indicator (hidden when not checked) */
+                    .checkmark:after {
+                      content: "";
+                      position: absolute;
+                      display: none;
+                    }
+
+                    /* Show the checkmark when checked */
+                    .checkBx input:checked ~ .checkmark:after {
+                      display: block;
+                    }
+
+                    /* Style the checkmark/indicator */
+                    .checkBx .checkmark:after {
+                      left: 4px;
+                      bottom: 3px;
+                      width: 3px;
+                      height: 8px;
+                      border: solid white;
+                      border-width: 0 3px 3px 0;
+                      -webkit-transform: rotate(45deg);
+                      -ms-transform: rotate(45deg);
+                      transform: rotate(45deg);
+                    }
+                }
+            }
+        }
+
+        .result
+        {
+            width: 800px;
+            background-color: #fff;
+
+            .title
+            {
+                width: 100%;
+                padding: 30px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid rgba(0,0,0,0.1);
+
+                span
+                {
+                    color: #333;
+                    font-family: Arial;
+                    font-size: 24px;
+                    font-weight: bold;
+                }
+
+            }
+        }
+    }
 }
