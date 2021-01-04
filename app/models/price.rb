@@ -3,6 +3,7 @@ class Price < ApplicationRecord
   	belongs_to :product
   	has_many :configurations, dependent: :destroy
 
+
   	validates :price, presence: true
 
   	accepts_nested_attributes_for :configurations, allow_destroy: true, reject_if: :all_blank
@@ -14,5 +15,9 @@ class Price < ApplicationRecord
 	      	end
 	    end
 	end
+
+  validates :price, presence: true
+  validates :product_id, presence: true
+
 
 end

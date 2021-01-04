@@ -1,8 +1,12 @@
 <div class="header-bg"></div>
 <div class="header">
     <ul class="menu">
-        <li><a href="#"><i class="fab fa-apple"></i>&nbsp;&nbsp;<span>MACBOOK</span></a></li>
-        <li><a href="#"><i class="fab fa-windows"></i>&nbsp;&nbsp;<span>SURFACE</span></a></li>
+        <%= link_to(products_path(filter_type: "filter_by_macbook")) do %>
+            <i class="fab fa-apple"></i>&nbsp;&nbsp;<span>MACBOOK</span>
+        <% end %>
+        <%= link_to(products_path(filter_type: "filter_by_surface")) do %>
+            <i class="fab fa-windows"></i>&nbsp;&nbsp;<span>SURFACE</span>
+        <% end %>
         <li><a href="#"><i class="fas fa-laptop"></i>&nbsp;&nbsp;<span>LAPTOP MOI</span></a></li>
         <li><a href="#"><i class="fas fa-laptop"></i>&nbsp;&nbsp;<span>LAPTOP CU</span></a></li>
         <li><a href="#"><i class="fas fa-headphones"></i>&nbsp;&nbsp;<span>PHU KIEN</span></a></li>

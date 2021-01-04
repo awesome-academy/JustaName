@@ -21,8 +21,25 @@ class Product < ApplicationRecord
     joins(:model).merge(Model.macbook)
   }
 
+  scope :filter_by_surface, ->{
+  	joins(:model).merge(Model.surface)
+  }
+
   scope :filter_by_dell, ->{
     joins(:model).merge(Model.dell)
   }
+
+end
+
+
+  scope :price_min, lambda{|min| where(['price >= ?', min])}
+  scope :price_max, lambda{|max| where(['price <= ?', max])}
+  scope :from10to15, -> {joins(:prices).where('prices.price >= 10000000 && prices.price <=15000000')}
+  scope :from15to20, -> {joins(:prices).where('prices.price >= 15000000 && prices.price <=20000000')}
+  scope :from20to25, -> {joins(:prices).where('prices.price >= 20000000 && prices.price <=25000000')}
+  scope :from25to30, -> {joins(:prices).where('prices.price >= 25000000 && prices.price <=30000000')}
+  scope :from30to40, -> {joins(:prices).where('prices.price >= 30000000 && prices.price <=40000000')}
+  scope :from40to50, -> {joins(:prices).where('prices.price >= 40000000 && prices.price <=50000000')}
+  scope :from50, -> {joins(:prices).where('prices.price >= 50000000')}
 
 end

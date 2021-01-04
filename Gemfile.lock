@@ -139,6 +139,9 @@ GEM
     haml (5.2.1)
       temple (>= 0.8.0)
       tilt
+    has_scope (0.7.2)
+      actionpack (>= 4.1)
+      activesupport (>= 4.1)
     hashie (4.1.0)
     http (4.4.1)
       addressable (~> 2.3)
@@ -423,6 +426,7 @@ DEPENDENCIES
   font-awesome-sass (~> 5.15.1)
   guard (= 2.15.0)
   guard-minitest (= 2.4.6)
+  has_scope
   instagram
   jbuilder (= 2.9.1)
   jquery-rails
