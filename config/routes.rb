@@ -20,7 +20,9 @@ Rails.application.routes.draw do
     resources :users
   end
 
-  resources :products, only: [:show, :index]
+  resources :products, only: [:show, :index] do
+    resources :comments, only: [:create, :destroy]
+  end
 
 end
 # as :user do

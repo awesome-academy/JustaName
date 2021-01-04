@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
 
+  has_many :comments
   belongs_to :model
   has_many :prices, dependent: :destroy
 
