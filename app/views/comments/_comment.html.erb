@@ -1,0 +1,32 @@
+<div class="comment-contentBx">
+  <p><%= current_user.name %></p>
+  <%= comment.content %>
+  <%= link_to "Xóa", [comment.product, comment], method: :delete, id: "comment-a-#{comment.id}" %><br>
+  <span class="time-comment">
+   Posted <%= time_ago_in_words(comment.created_at) %>  ago.
+  <span>
+</div>
+
+<script type="text/javascript">
+$('a[id^="comment-a-"]').click(function (e){
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+    var url_id = $(this).val();
+
+    $.ajax({
+        type: "DELETE",
+        url: $(this).attr('href'),
+        data: {_method: 'delete'},
+        dataType: 'json',
+        success: function (data) {
+          if(data.result == 'OK') {
+            $('#comment-a-' + data.id).closest("div").remove()
+          }
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+});
+</script>

@@ -1,201 +1,213 @@
 <div class="product-show-wrapper">
-	<div class="href-history">
-		<p>
-			<%= link_to "Trang chủ", root_path %>
-			&nbsp;
-			/
-			&nbsp;
-			<%= @product.title %>
-		</p>
-	</div>
-	<section class="product-show-container">
-		<div class="product-title">
-			<p><%= @product.title %></p>
-		</div>
-		<div class="product-container">
-			<div class="product-content">
-				<div class="image">
-					<div class="product-img">
-						<img src="https://lapvip.vn/upload/filters_img/thumb_800x0/919-0-1600826667.jpg">
-					</div>
-					<p>Click hoặc rê chuột vào ảnh để phóng to</p>
-				</div>
-				<div class="product-contentBx">
-					<form>
-						<div class="product-price">
-							<% @prices.each do |price| %>
-								<span class="price"><%= price.price %></span>
-							<% end %>
-						</div>
-						<div class="detail">
-							<% @prices.each do |price| %>
-								<ul class="configuration-path">
-									<% price.configurations.each do |configuration| %>
-										<li><i class="fas fa-check-circle"></i>&nbsp;<span><%= configuration.name %></span>&nbsp;<%= configuration.content %></li>
-									<% end %>
-								</ul>
-							<% end %>
-						</div>
-						
-						<div class="configuration-pick">
-							<p>CẤU HÌNH</p>
-							<div class="configuration-content">
-								<% index = 0 %>
-								<% @prices.each do |price| %>
-									<% index += 1 %>
-									<div class="configurationBx" id="configurationBx-<%= price.id %>" onclick="currentSlide(<%= index.to_s %>)">
-										<input type="radio" name="price" value="<%= price.id %>" id="configuration-<%= price.id %>" class="ra-dio">
-										<label for="configuration-<%= price.id %>">
-											<% price.configurations.each do |configuration| %>
-												<p class="configurations">
-													<span><%= configuration.name %></span>&nbsp;&nbsp;<%= configuration.content %>
-												</p>
-											<% end %>
-											<p class="configuration-price"><%= price.price %><p>
-										</label>
-									</div>
-								<% end %>
-							</div>
-						</div>
-						<div class="promotion-path">
-							<span class="promotion-title">
-								<i class="fas fa-gift"></i>&nbsp;QUÀ TẶNG/ KHUYẾN MẠI
-							</span>
-							<ul class="promotionBx">
-								<li>
-									<p>Tặng balo hoặc túi trống sốc , dán màn hình. Cài đặt phần mềm và giao hàng miễn phí toàn quốc. Vệ sinh máy miễn phí định kỳ trong suốt thời gian sử dụng.
-									</p>
-								</li>
-							</ul>
-						</div>
-						<div class="buy-path">
-							<label for="quantity" class="quantity">Số lượng :&nbsp;</label>
-							<input type="number" class="quantityBx" value="1" name="quantity" min="1">
-							<input type="submit" class="buy-button" value="MUA NGAY">
-						</div>
-						<div class="contact-phone">
-							<p>Gọi <span>0852.66.67.68</span> để được tư vấn mua hàng ( Miễn phí )</p>
-						</div>
-					</form>
-				</div>
-			</div>
-			<div class="plus-path">
-				<h3>LAPVIP cam kết :</h3>
-				<ul class="commitment">
-					<li><i class="fas fa-medal">&nbsp;</i>Hàng chính hãng</li>
-					<li><i class="far fa-check-circle"></i>&nbsp;Bảo hành 12 tháng tại Lapvip</li>
-					<li><i class="fas fa-shipping-fast"></i>&nbsp;Giao hàng miễn phí toàn quốc</li>
-					<li><i class="far fa-check-circle"></i>&nbsp;Hỗ trợ trả góp lãi suất ưu đãi</li>
-					<li><i class="fas fa-layer-group"></i>&nbsp;Hỗ trợ phần mềm trọn đời</li>
-				</ul>
-				<div class="support-path">
-					<div class="support-onl">
-						<p class="support-onl-Tx">
-							Hỗ trợ trực tuyến
-						</p>
-						<div class="support-onl-Bx">
-							<p>Tư vấn : Huyen Mini</p>
-							<p>Liên hệ: 0852666768</p>
-							<p>lapvip@gmail.com</p>
-							<a href="#" class="fb-Bt">Facebook</a>
-							<a href="#" class="zl-Bt">Zalo me!</a>
-						</div>
-					</div>
-					<ul class="contact-Bx">
-						<li><i class="fas fa-home"></i>&nbsp;: 294 Thái Hà, Láng Hạ, Đống Đa, Hà Nội<li>
-						<li><i class="fas fa-phone"></i>&nbsp;: 0852.66.67.68</li>
-						<li><i class="far fa-envelope"></i>&nbsp;: lapvip@gmail.com</li>
-						<li><i class="fas fa-blender-phone"></i>&nbsp;: 0852.66.67.68</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="product-description">
-		<div class="product-description-content">
-			<ul class="product-show-content-nav">
-				<li><a href="#">Đặc điểm nổi bật</a></li>
-				<li><a href="#">Đánh giá & nhận xét</a></li>
-				<li><a href="#">Hỏi & Đáp</a></li>
-			</ul>
-			<div class="product-description-contentBx" id="toggle-div">
-				<%= @product.description.html_safe %>
-			</div>
-			<div class="flow-over">
-				<div class="flow-over-layer" id="layer"></div>
-				<span id="more">Xem thêm</span>
-				<span id="few">Rút gọn</span>
-			</div>
-		</div>
-		<div class="technical">
-			<h3>Thông số kỹ thuật</h3>
-			<table class="technicalBx">
-				<tr>
-					<th class="technical-key">Bộ xử lý CPU</th>
-					<th class="technical-value">Intel Core i9 2.4 GHz</th>
-				</tr>
-				<tr>
-					<th class="technical-key">Bộ nhớ RAM</th>
-					<th class="technical-value">64 GB</th>
-				</tr>
-				<tr>
-					<th class="technical-key">Màn hình</th>
-					<th class="technical-value">16-inch 3072x1920 Retina display with True Tone</th>
-				</tr>
-				<tr>
-					<th class="technical-key">Card màn hình</th>
-					<th class="technical-value">AMD Radeon Pro 5500M with 8GB</th>
-				</tr>
-				<tr>
-					<th class="technical-key">Ổ cứng</th>
-					<th class="technical-value">SSD 8 TB</th>
-				</tr>
-				<tr>
-					<th class="technical-key">Kích thước và trọng lượng</th>
-					<th class="technical-value">nặng 1,95 kg</th>
-				</tr>
-				<tr>
-					<th class="technical-key">Camera</th>
-					<th class="technical-value">720p FaceTime HD</th>
-				</tr>
-				<tr>
-					<th class="technical-key">Cổng kết nối</th>
-					<th class="technical-value">Four Thunderbolt 3 ports</th>
-				</tr>
-				<tr>
-					<th class="technical-key">Pin và sạc</th>
-					<th class="technical-value">96W h Li-Poly</th>
-				</tr>
-			</table>
-		</div>
-	</section>
-</div>
+  <div class="href-history">
+    <p>
+      <%= link_to "Trang chủ", root_path %>
+      &nbsp;
+      /
+      &nbsp;
+      <%= @product.title %>
+    </p>
+  </div>
+  <section class="product-show-container">
+    <div class="product-title">
+      <p><%= @product.title %></p>
+    </div>
+    <div class="product-container">
+      <div class="product-content">
+        <div class="image">
+          <div class="product-img">
+            <img src="https://lapvip.vn/upload/filters_img/thumb_800x0/919-0-1600826667.jpg">
+          </div>
+          <p>Click hoặc rê chuột vào ảnh để phóng to</p>
+        </div>
+        <div class="product-contentBx">
+          <form>
+            <div class="product-price">
+              <% @prices.each do |price| %>
+                <span class="price"><%= price.price %></span>
+              <% end %>
+            </div>
+            <div class="detail">
+              <% @prices.each do |price| %>
+                <ul class="configuration-path">
+                  <% price.configurations.each do |configuration| %>
+                    <li><i class="fas fa-check-circle"></i>&nbsp;<span><%= configuration.name %></span>&nbsp;<%= configuration.content %></li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </div>
 
+            <div class="configuration-pick">
+              <p>CẤU HÌNH</p>
+              <div class="configuration-content">
+                <% index = 0 %>
+                <% @prices.each do |price| %>
+                  <% index += 1 %>
+                  <div class="configurationBx" id="configurationBx-<%= price.id %>" onclick="currentSlide(<%= index.to_s %>)">
+                    <input type="radio" name="price" value="<%= price.id %>" id="configuration-<%= price.id %>" class="ra-dio">
+                    <label for="configuration-<%= price.id %>">
+                      <% price.configurations.each do |configuration| %>
+                        <p class="configurations">
+                          <span><%= configuration.name %></span>&nbsp;&nbsp;<%= configuration.content %>
+                        </p>
+                      <% end %>
+                      <p class="configuration-price"><%= price.price %><p>
+                    </label>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="promotion-path">
+              <span class="promotion-title">
+                <i class="fas fa-gift"></i>&nbsp;QUÀ TẶNG/ KHUYẾN MẠI
+              </span>
+              <ul class="promotionBx">
+                <li>
+                  <p>Tặng balo hoặc túi trống sốc , dán màn hình. Cài đặt phần mềm và giao hàng miễn phí toàn quốc. Vệ sinh máy miễn phí định kỳ trong suốt thời gian sử dụng.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div class="buy-path">
+              <label for="quantity" class="quantity">Số lượng :&nbsp;</label>
+              <input type="number" class="quantityBx" value="1" name="quantity" min="1">
+              <input type="submit" class="buy-button" value="MUA NGAY">
+            </div>
+            <div class="contact-phone">
+              <p>Gọi <span>0852.66.67.68</span> để được tư vấn mua hàng ( Miễn phí )</p>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="plus-path">
+        <h3>LAPVIP cam kết :</h3>
+        <ul class="commitment">
+          <li><i class="fas fa-medal">&nbsp;</i>Hàng chính hãng</li>
+          <li><i class="far fa-check-circle"></i>&nbsp;Bảo hành 12 tháng tại Lapvip</li>
+          <li><i class="fas fa-shipping-fast"></i>&nbsp;Giao hàng miễn phí toàn quốc</li>
+          <li><i class="far fa-check-circle"></i>&nbsp;Hỗ trợ trả góp lãi suất ưu đãi</li>
+          <li><i class="fas fa-layer-group"></i>&nbsp;Hỗ trợ phần mềm trọn đời</li>
+        </ul>
+        <div class="support-path">
+          <div class="support-onl">
+            <p class="support-onl-Tx">
+              Hỗ trợ trực tuyến
+            </p>
+            <div class="support-onl-Bx">
+              <p>Tư vấn : Huyen Mini</p>
+              <p>Liên hệ: 0852666768</p>
+              <p>lapvip@gmail.com</p>
+              <a href="#" class="fb-Bt">Facebook</a>
+              <a href="#" class="zl-Bt">Zalo me!</a>
+            </div>
+          </div>
+          <ul class="contact-Bx">
+            <li><i class="fas fa-home"></i>&nbsp;: 294 Thái Hà, Láng Hạ, Đống Đa, Hà Nội<li>
+            <li><i class="fas fa-phone"></i>&nbsp;: 0852.66.67.68</li>
+            <li><i class="far fa-envelope"></i>&nbsp;: lapvip@gmail.com</li>
+            <li><i class="fas fa-blender-phone"></i>&nbsp;: 0852.66.67.68</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="product-description">
+    <div class="product-description-content">
+      <ul class="product-show-content-nav">
+        <li><a href="#">Đặc điểm nổi bật</a></li>
+        <li><a href="#">Đánh giá & nhận xét</a></li>
+        <li><a href="#">Hỏi & Đáp</a></li>
+      </ul>
+      <div class="product-description-contentBx" id="toggle-div">
+        <%= @product.description.html_safe %>
+      </div>
+      <div class="flow-over">
+        <div class="flow-over-layer" id="layer"></div>
+        <span id="more">Xem thêm</span>
+        <span id="few">Rút gọn</span>
+      </div>
+    </div>
+    <div class="technical">
+      <h3>Thông số kỹ thuật</h3>
+      <table class="technicalBx">
+        <tr>
+          <th class="technical-key">Bộ xử lý CPU</th>
+          <th class="technical-value">Intel Core i9 2.4 GHz</th>
+        </tr>
+        <tr>
+          <th class="technical-key">Bộ nhớ RAM</th>
+          <th class="technical-value">64 GB</th>
+        </tr>
+        <tr>
+          <th class="technical-key">Màn hình</th>
+          <th class="technical-value">16-inch 3072x1920 Retina display with True Tone</th>
+        </tr>
+        <tr>
+          <th class="technical-key">Card màn hình</th>
+          <th class="technical-value">AMD Radeon Pro 5500M with 8GB</th>
+        </tr>
+        <tr>
+          <th class="technical-key">Ổ cứng</th>
+          <th class="technical-value">SSD 8 TB</th>
+        </tr>
+        <tr>
+          <th class="technical-key">Kích thước và trọng lượng</th>
+          <th class="technical-value">nặng 1,95 kg</th>
+        </tr>
+        <tr>
+          <th class="technical-key">Camera</th>
+          <th class="technical-value">720p FaceTime HD</th>
+        </tr>
+        <tr>
+          <th class="technical-key">Cổng kết nối</th>
+          <th class="technical-value">Four Thunderbolt 3 ports</th>
+        </tr>
+        <tr>
+          <th class="technical-key">Pin và sạc</th>
+          <th class="technical-value">96W h Li-Poly</th>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+
+  <div class="comment-box">
+    <div class="title-comment-product">
+        <p>Hỏi Đáp về  <%= @product.title %></p>
+    </div>
+      <%= render 'comments/form' %>
+      <div class="comment-content" id="comments">
+        <% @comments.each do |comment| %>
+            <%= render 'comments/comment', comment: comment %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 <script type="text/javascript">
-	$(document).ready(function(){
-		$("#more").click(function(){
-	    	$("#layer").css("visibility","hidden");
-	    	$("#toggle-div").css("height","auto");
-	    	$("#more").css("visibility","hidden");
-	    	$("#few").css("visibility","visible");
-	  	});
-	  	$("#few").click(function(){
-	    	$("#layer").css("visibility","visible");
-	    	$("#toggle-div").css("height","550px");
-	    	$("#more").css("visibility","visible");
-	    	$("#few").css("visibility","hidden");
-	  	});
+  $(document).ready(function(){
+    $("#more").click(function(){
+        $("#layer").css("visibility","hidden");
+        $("#toggle-div").css("height","auto");
+        $("#more").css("visibility","hidden");
+        $("#few").css("visibility","visible");
+      });
+      $("#few").click(function(){
+        $("#layer").css("visibility","visible");
+        $("#toggle-div").css("height","550px");
+        $("#more").css("visibility","visible");
+        $("#few").css("visibility","hidden");
+      });
 
-	  	$("input[type=radio][name=price]:first").attr('checked', 'checked');
+      $("input[type=radio][name=price]:first").attr('checked', 'checked');
 
-	  	// var p;
-	  	// var configurations = document.getElementsByClassName("configurations");
-	  	// for (p = 0; p < configurations.length; p++) {
-	  	// 	if (p > 1) {
+      // var p;
+      // var configurations = document.getElementsByClassName("configurations");
+      // for (p = 0; p < configurations.length; p++) {
+      // 	if (p > 1) {
     //             configurations[p].style.display = "none";
     //         }
     //     }
-	});
+  });
 </script>
 
 <script type="text/javascript">
@@ -228,4 +240,4 @@
             prices[radioIndex - 1].style.display = "block";
             configurationBxs[radioIndex - 1].className += " choose";
         }
-    </script>
+</script>
