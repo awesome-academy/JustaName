@@ -3,6 +3,11 @@ class Product < ApplicationRecord
   has_many :comments
   belongs_to :model
   has_many :prices, dependent: :destroy
+  has_many :product_photos, dependent: :destroy
+
+  accepts_nested_attributes_for :product_photos, allow_destroy: true, reject_if: :all_blank
+
+  accepts_nested_attributes_for :prices, allow_destroy: true, reject_if: :all_blank
 
   validates :title, presence: true
   validates :description, presence: true
