@@ -10,6 +10,7 @@ gem 'jbuilder', '2.9.1'
 gem 'bootsnap', '1.4.4', require: false
 gem 'figaro'
 gem 'devise'
+gem 'has_scope'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
