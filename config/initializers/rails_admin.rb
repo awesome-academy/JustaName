@@ -24,8 +24,16 @@ RailsAdmin.config do |config|
   config.model Product do
      edit do
        # field :title
-       include_fields :title, :description, :model, :prices
+       include_fields :model, :title, :description, :product_photos, :prices
        field :description, :ck_editor
+       # field :model_id
+     end
+  end
+
+  config.model Price do
+     edit do
+       # field :title
+       include_fields :product_id, :price, :configurations
        # field :model_id
      end
   end
