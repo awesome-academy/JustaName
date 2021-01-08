@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   get 'pages/help', to: 'static_pages#help'
   get 'pages/review', to: 'static_pages#review'
   resources :reviews, only: [:create, :destroy, :show, :new, :index] do
-    collection { get :search, to: 'reviews#index' }
+    collection do
+      get :autocomplete
+    end
     resources :comments, only: [:index, :create]
   end
 

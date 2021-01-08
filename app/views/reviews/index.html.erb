@@ -1,5 +1,55 @@
-<form method="get" action="/reviews">
-	<input type="text" name="title">
-	<input type="submit" value="Search">
-</form>
-<%= render @reviews %>
+<div class="review-index-wrapper">
+  <div class="search-path">
+    <div class="search-review">
+      <%= form_tag reviews_path, method: :get do %>
+          <div class="autocomplete" id="autocomplete">
+              <%= text_field_tag :q, params[:q], placeholder: "Search...", data: { behavior: "autocomplete" }, class: 'form-control typeahead', id: "review_search" %>
+              <%= submit_tag "Search", name: nil, id: "review_searchBt" %>
+          </div>
+      <% end %>
+    </div>
+    <div class="search-product">
+      
+    </div>
+  </div>
+  <div class="content">
+    <% @reviews.each do |review| %>
+      <div class="contentBx">
+        <div class="content-img">
+          <div class="content-imgBx">
+            
+          </div>
+        </div>
+        <div class="content-text">
+          <h3>
+            <%= link_to review.title, controller: "reviews", action: "show", id: review.id %>
+          </h3>
+          <p>
+            <%= review.description %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+    <div class="pagy">
+      
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+    var options = {
+    	url: function(phrase) {
+      		return "/reviews.json?q[q]=" + phrase;
+    	},
+		getValue: "title",
+		template: {
+			type: "links",
+			fields: {
+				link: "url"
+			}
+		},
+  	};
+
+  	$("#review_search").easyAutocomplete(options);
+</script>

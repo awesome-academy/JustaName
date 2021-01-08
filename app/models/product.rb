@@ -29,9 +29,6 @@ class Product < ApplicationRecord
     joins(:model).merge(Model.dell)
   }
 
-end
-
-
   scope :price_min, lambda{|min| where(['price >= ?', min])}
   scope :price_max, lambda{|max| where(['price <= ?', max])}
   scope :from10to15, -> {joins(:prices).where('prices.price >= 10000000 && prices.price <=15000000')}
