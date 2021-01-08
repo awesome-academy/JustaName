@@ -1,7 +1,9 @@
 <div class="comment-contentBx">
-  <p><%= current_user.name %></p>
+  <h5><%= comment.user.name %></h5>
   <%= comment.content %>
-  <%= link_to "Xóa", [comment.product, comment], method: :delete, id: "comment-a-#{comment.id}" %><br>
+  <% if current_user && current_user == comment.user %>
+  <%= link_to "Xóa", [comment.product, comment], method: :delete, remote: true, id: "comment-a-#{comment.id}" %><br>
+  <% end %>%
   <span class="time-comment">
    Posted <%= time_ago_in_words(comment.created_at) %>  ago.
   <span>

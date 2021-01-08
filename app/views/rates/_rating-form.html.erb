@@ -1,0 +1,67 @@
+
+<div class="main-wrap-comment" >
+  <div class="title-heading">
+    Đánh giá & Nhận xét <%= @product.title %>
+  </div>
+  <div class="box-rating-a"></div>
+    <div class="box-rating1"></div>
+
+    <div calss="box-rating2"></div>
+    <div calss="box-rating3"></div>
+  <div class="container rating">
+    <div class="post" class="<%= @product.rates.where(user: current_user).empty? ? 'hide' : 'show' %>">
+      <div class="text">
+      </div>
+      <div class="fas fa-star"  >
+        <%= @product.rates.average(:star)%>
+      </div>
+      <div class="edit">
+        EDIT</div>
+    </div>
+    <%= form_for([@product,Rate.new], html: {class: @product.rates.where(user: current_user).empty? ? 'show' : 'hide'}) do |f| %>
+    <div class="star-widget">
+      <%= f.radio_button :star, 5, id: 'rate-5'%>
+      <label for="rate-5" class="fas fa-star"></label>
+      <%= f.radio_button :star, 4, id: 'rate-4'%>
+      <label for="rate-4" class="fas fa-star"></label>
+      <%= f.radio_button :star, 3, id: 'rate-3'%>
+      <label for="rate-3" class="fas fa-star"></label>
+      <%= f.radio_button :star, 2, id: 'rate-2'%>
+      <label for="rate-2" class="fas fa-star"></label>
+      <%= f.radio_button :star, 1, id: 'rate-1'%>
+      <label for="rate-1" class="fas fa-star"></label>
+    </div>
+    <div>
+    <textarea cols="30" placeholder="Bạn có khuyên người khác mua sản phẩm này không? Tại sao?" class="textarea"></textarea></div>
+
+    <div class="btn">
+    <%= f.submit "Gửi", id:"send"  %>
+    </div>
+    <% end %>
+ </div>
+</div>
+<script>
+  // const btn = document.querySelector(".rating button");
+  // const post = document.querySelector(".rating .post");
+  // const widget = document.querySelector(".rating .star-widget");
+  // const editBtn = document.querySelector(".rating .edit");
+  // btn.onclick = () => {
+  //   widget.style.display = "none";
+  //   post.style.display = "block";
+  //   editBtn.onclick = () => {
+  //     widget.style.display = "block";
+  //     post.style.display = "none";
+  //   }
+  //   return false;
+  // }
+</script>
+<script type="text/javascript">
+	// $(document).on('submit', 'form', function(event) {
+  //   $.ajax({
+	// 		type: $(this).attr('method'),
+	// 		url: $(this).attr('action'),
+	// 		data: $(this).serialize(),
+	// 		dataType: 'html'
+	// 	});
+  // });
+  </script>
