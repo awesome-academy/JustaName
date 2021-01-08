@@ -1,19 +1,18 @@
-
+<% if user_signed_in? %>
 	<%= form_for([@product,Comment.new]) do |f| %>
-	  <% if user_signed_in? %>
+		<%= f.hidden_field :user_id, value: current_user.id %>
 		<div><%= current_user.name %></div>
-		<% end %>
 	  <div class="form-comment" >
-	  <%= f.text_area :content, id:"comment_content" %>
+	  	<%= f.text_area :content, id:"comment_content" %>
 	  </div>
 	  <div class="submit-box">
 	  <%= f.submit "comment", class:"submit-comment", id: "js-submit-comment" %>
 	  </div>
 	<% end %>
-
+<% end %>
 
 <script type="text/javascript">
-	$(document).on('submit', 'form', function(event) {
+	$(document).on('submit', '#new_comment', function(event) {
 		event.preventDefault();
 		$.ajax({
 			type: $(this).attr('method'),

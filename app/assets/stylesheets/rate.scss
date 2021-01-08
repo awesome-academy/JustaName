@@ -1,0 +1,150 @@
+// Place all the styles related to the rate controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+//*** css rating
+/* Rate Star */
+.main-wrap-comment{
+
+}
+.main-wrap-comment .title-heading{
+  border-bottom: 1px solid #dfdfdf;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  padding-top: 0
+}
+
+
+.rating-box{
+  margin-top: 40px;
+  width: 45%;
+  background:#fff;
+  padding: 20px;
+  margin-right: 240px
+
+}
+.container{
+    float: left;
+  position: relative;
+  width: 100%;
+  background: #fff;
+  padding: 20px 30px;
+  border: 1px solid #111;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+// .container .post{
+//   display: none;
+// }
+.container .text{
+  font-size: 25px;
+  color: #111111;
+  font-weight: 500;
+}
+.container .edit{
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  font-size: 12px;
+  color: #111111;
+  font-weight: 500;
+  cursor: pointer;
+}
+.container .edit:hover{
+  text-decoration: underline;
+}
+.container .star-widget{
+  float: left;
+}
+.container .star-widget input{
+  display: none;
+}
+.star-widget label{
+  font-size: 20px;
+  color: #444;
+  padding: 10px;
+  float: right;
+  transition: all 0.2s ease;
+}
+input:not(:checked) ~ label:hover,
+input:not(:checked) ~ label:hover ~ label{
+  color: rgb(255, 215, 35);
+}
+input:checked ~ label{
+  color: rgb(246, 210, 48);
+}
+input#rate-5:checked ~ label{
+  color: rgb(255, 225, 0);
+  text-shadow: 0 0 20px rgb(255, 225, 0);
+}
+#rate-1:checked ~ form {
+  content: "I just hate it 😠";
+}
+#rate-2:checked ~ form header:before{
+  content: "I don't like it 😒";
+}
+#rate-3:checked ~ form header:before{
+  content: "It is awesome 😄";
+}
+#rate-4:checked ~ form header:before{
+  content: "I just like it 😎";
+}
+#rate-5:checked ~ form header:before{
+  content: "I just love it 😍";
+}
+.container .star-widget form {
+}
+.container .textarea{
+  margin-top: 10px;
+    width: 100%;
+    font-size: 13px;
+    padding: 9px;
+    width: 100%;
+    height: 54px;
+    overflow: auto;
+    line-height: 1.57;
+    border: solid 1px #ccc;
+    border-radius: 2px;
+    background: #fff;
+    -webkit-box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.22);
+    box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.22);
+}
+
+.container .form-control{
+  display: block;
+    width: 66%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+
+}
+ .container .btn{
+  height: 45px;
+  width: 100%;
+}
+.container .btn #send{
+  float: right;
+  height: 100%;
+  width: 15%;
+  border: 1px solid #444;
+  outline: none;
+  background: #d0021b;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 0;
+}
+// form .btn button:hover{
+//   background: #1b1b1b;
+// }

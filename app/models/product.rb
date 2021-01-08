@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
 
   has_many :comments
+  has_many :rates
   belongs_to :model
   has_many :prices, dependent: :destroy
   has_many :product_photos, dependent: :destroy
@@ -28,6 +29,9 @@ class Product < ApplicationRecord
   scope :filter_by_dell, ->{
     joins(:model).merge(Model.dell)
   }
+
+
+
 
   scope :price_min, lambda{|min| where(['price >= ?', min])}
   scope :price_max, lambda{|max| where(['price <= ?', max])}

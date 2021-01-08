@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   def create
     @product = Product.find(params[:product_id])
-    @comment =@product.comments.create(params[:comment].permit(:content))
+    @comment = @product.comments.create comment_params
 
     respond_to do |format|
       format.html {render partial: 'comment', locals: {comment: @comment} }
@@ -17,4 +17,11 @@ class CommentsController < ApplicationController
         format.json {render json: {result: 'OK', id: params[:id]} }
       end
   end
+
+  private
+
+  def comment_params
+    params[:comment].permit(:content, :user_id)
+  end
+
 end

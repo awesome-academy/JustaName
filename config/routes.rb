@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   resources :products, only: [:show, :index] do
     resources :comments, only: [:create, :destroy]
+    resources :rates
   end
 
 end
