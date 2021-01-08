@@ -9,6 +9,7 @@ require("channels")
     //= require ckeditor/init
 require("jquery")
 require("packs/jquery.easy-autocomplete.min")
+require("packs/typehead")
 import "bootstrap"
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

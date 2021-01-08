@@ -106,6 +106,19 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    elasticsearch (7.10.0)
+      elasticsearch-api (= 7.10.0)
+      elasticsearch-transport (= 7.10.0)
+    elasticsearch-api (7.10.0)
+      multi_json
+    elasticsearch-model (7.1.1)
+      activesupport (> 3)
+      elasticsearch (> 1)
+      hashie
+    elasticsearch-rails (7.1.1)
+    elasticsearch-transport (7.10.0)
+      faraday (~> 1)
+      multi_json
     equalizer (0.0.11)
     erubi (1.10.0)
     execjs (2.7.0)
@@ -348,6 +361,10 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    searchkick (4.4.2)
+      activemodel (>= 5)
+      elasticsearch (>= 6)
+      hashie
     selenium-webdriver (3.142.3)
       childprocess (>= 0.5, < 2.0)
       rubyzip (~> 1.2, >= 1.2.2)
@@ -422,6 +439,8 @@ DEPENDENCIES
   carrierwave
   ckeditor
   devise
+  elasticsearch-model
+  elasticsearch-rails
   figaro
   font-awesome-sass (~> 5.15.1)
   guard (= 2.15.0)
@@ -449,6 +468,7 @@ DEPENDENCIES
   rails_admin
   ransack
   sass-rails (= 5.1.0)
+  searchkick
   selenium-webdriver (= 3.142.3)
   spring (= 2.1.0)
   spring-watcher-listen (= 2.0.1)

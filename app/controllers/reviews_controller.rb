@@ -24,23 +24,14 @@ class ReviewsController < ApplicationController
 
 	def show
 	  @review = Review.find(params[:id])
-	  @user = @review.user
-	#   @comments = @review.comments
-	#   @comment = Comment.new
-	#   @rate = Rate.new
 	end
-	
-	# def rate
-    	# @review = Review.find(params[:id])
-	# end
 
 	def index
-		#@review = current_user.reviews.build
-		#if params[:auto]
-		@reviews = Review.all
-		if params[:title] && !params[:title].empty?
-			@reviews = Review.search_review(params[:title].downcase)
-		end
+	  @reviews = if params[:q].present?
+	    Review.search(params[:q]).results
+	  else
+	    Review.all
+	  end
 	end
 
 	private

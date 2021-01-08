@@ -41,10 +41,6 @@ class ProductsController < ApplicationController
   def set_product
 	  @product = Product.find(params[:id])
     rediect_to root_path if @product.nil?
-    def set_product
-      @product = Product.find(params[:id])
-      rediect_to root_path if @product.nil?
-
 	end
 
 end

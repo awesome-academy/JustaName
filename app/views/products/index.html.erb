@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-<%= render @products %>
-=======
 <%= render @products %>
 <%== pagy_bootstrap_nav(@pagy) %>
 <%= link_to '10 triệu-15 triệu', products_path(filter_type: "from10to15"), price_min: 10000000, price_max: 15000000 %>
@@ -10,5 +7,3 @@
 <%= link_to '30 triệu-40 triệu', products_path(filter_type: "from30to40"), price_min: 30000000, price_max: 40000000 %>
 <%= link_to '40 triệu-50 triệu', products_path(filter_type: "from40to50"), price_min: 40000000, price_max: 50000000 %>
 <%= link_to 'Trên 50 triệu', products_path(filter_type: "from50"), price_min: 50000000%>
-
->>>>>>> test
