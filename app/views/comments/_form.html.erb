@@ -23,19 +23,6 @@
 		.done(function(response) {
 			$('#comments').append(response);
 			$('#js-submit-comment').removeAttr("disabled");
+  		});
   	});
-  });
-
-	var options = {
-  	url: function(phrase) {
-    	return "/comments.json?q[title_cont]=" + phrase;
-  	},
-	  	getValue: "title",
-	   	template: {
-			type: "links",
-			fields: {
-				link: "url"
-			}
-	  	},
-	};
 </script>

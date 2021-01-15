@@ -1,0 +1,443 @@
+<div class="cart-wrapper">
+	<div class="container">
+		<div class="cart-header"></div>
+		<div class="content"></div>
+		<div class="subFooter">
+			<% if user_signed_in? %>
+				<button type="button" id="add_role_view">Create order</button>
+			<%	else %>
+				<p>You need <span class="need-sign-in">sign in</span> to create an order!</p>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<div id="dialog_form">
+	<%= form_tag(html: { class: "form-horizontal"}) do %>
+		<div class="control-group">
+			<%= label_tag :name, "Name", class: "control-label" %>
+			<%= text_field_tag(:name, nil, placeholder: "Your name ...", id: "nameContent", class:"form-cotrol") %>
+		</div>
+		<div class="control-group">
+			<%= label_tag :phone, "Phone Number", class: "control-label" %>
+			<%= text_field_tag(:phone, nil, placeholder: "Your phone number ...", id: "phoneContent", class:"form-cotrol") %>
+		</div>
+		<div class="control-group city">
+			<div class="control-group-city">
+				<%= label_tag :province, "Province", class: "control-label" %>
+				<select name="calc_shipping_provinces" required="" id="province">
+					<option value="">Tỉnh / Thành phố</option>
+				</select>
+			</div>
+			<div class="control-group-city">
+				<%= label_tag :district, "District", class: "control-label" %>
+				<select name="calc_shipping_district" required="" id="district">
+					<option value="">Quận / Huyện</option>
+				</select>
+				<input class="billing_address_1" name="" type="hidden" value="">
+				<input class="billing_address_2" name="" type="hidden" value="">
+			</div>
+		</div>
+		<div class="control-group">
+			<%= label_tag :address, "Address", class: "control-label" %>
+			<%= text_field_tag(:address, nil, placeholder: "Your address ...", id: "addressContent", class:"form-cotrol") %>
+		</div>
+	<% end %>
+</div>
+
+<script async="async" defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vietblogdao/js/districts.min.js"></script>
+
+<script>
+	//<![CDATA[
+    window.addEventListener('load',function(){
+      if(address_2=localStorage.getItem('address_2_saved')){
+        $('select[name="calc_shipping_district"] option').each(function(){
+          if($(this).text()==address_2){$(this).attr('selected','')}
+        })
+        $('input.billing_address_2').attr('value',address_2)
+      }
+      if (district = localStorage.getItem('district')) {
+        $('select[name="calc_shipping_district"]').html(district)
+        $('select[name="calc_shipping_district"]').on('change', function() {
+          var target = $(this).children('option:selected')
+          target.attr('selected', '')
+          $('select[name="calc_shipping_district"] option').not(target).removeAttr('selected')
+          address_2 = target.text()
+          $('input.billing_address_2').attr('value', address_2)
+          district = $('select[name="calc_shipping_district"]').html()
+          localStorage.setItem('district', district)
+          localStorage.setItem('address_2_saved', address_2)
+        })
+      }
+      $('select[name="calc_shipping_provinces"]').each(function() {
+        var $this = $(this),
+          stc = ''
+        c.forEach(function(i, e) {
+          e += +1
+          stc += '<option value=' + e + '>' + i + '</option>'
+          $this.html('<option value="">Tỉnh / Thành phố</option>' + stc)
+          if (address_1 = localStorage.getItem('address_1_saved')) {
+            $('select[name="calc_shipping_provinces"] option').each(function() {
+              if ($(this).text() == address_1) {
+                $(this).attr('selected', '')
+              }
+            })
+            $('input.billing_address_1').attr('value', address_1)
+          }
+          $this.on('change', function(i) {
+            i = $this.children('option:selected').index() - 1
+            var str = '',
+              r = $this.val()
+            if (r != '') {
+              arr[i].forEach(function(el) {
+                str += '<option value="' + el + '">' + el + '</option>'
+                $('select[name="calc_shipping_district"]').html('<option value="">Quận / Huyện</option>' + str)
+              })
+              var address_1 = $this.children('option:selected').text()
+              var district = $('select[name="calc_shipping_district"]').html()
+              localStorage.setItem('address_1_saved', address_1)
+              localStorage.setItem('district', district)
+              $('select[name="calc_shipping_district"]').on('change', function() {
+                var target = $(this).children('option:selected')
+                target.attr('selected', '')
+                $('select[name="calc_shipping_district"] option').not(target).removeAttr('selected')
+                var address_2 = target.text()
+                $('input.billing_address_2').attr('value', address_2)
+                district = $('select[name="calc_shipping_district"]').html()
+                localStorage.setItem('district', district)
+                localStorage.setItem('address_2_saved', address_2)
+              })
+            } else {
+              $('select[name="calc_shipping_district"]').html('<option value="">Quận / Huyện</option>')
+              district = $('select[name="calc_shipping_district"]').html()
+              localStorage.setItem('district', district)
+              localStorage.removeItem('address_1_saved', address_1)
+            }
+          })
+        })
+      })
+    })
+	//]]>
+</script>
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		if(JSON.parse(localStorage.getItem('details')) === null || JSON.parse(localStorage.getItem('details')).length == 0){
+			$('#add_role_view').css("display", "none");
+		} else {
+			$('#add_role_view').css("display", "block");
+		}
+	})
+
+</script>
+
+<script type="text/javascript">
+
+	let Data = '';
+
+	let Count = '';
+
+    if(JSON.parse(localStorage.getItem('details')) === null || JSON.parse(localStorage.getItem('details')).length == 0){
+    	Count += '<h1>GIỎ HÀNG CỦA BẠN ( 0 SẢN PHẨM )</h1>';
+      	Data += '<p>You have not selected any products!</p><%= link_to "-> Shopping now", root_path, id: "go-shop" %>';
+      	$('#add_role_view').css("display", "none");
+    }else{
+      	JSON.parse(localStorage.getItem('details')).map(data=>{
+        	Data += "<div class='contentBx'><span class='contentBx-id'>" + data.price_id + "</span><div class='item-image'></div><div class='item-content'><h3>" + data.title + "</h3><div class='item-subcontent'><span class='item-price'>" + data.cost + "</span><input type='number' class='quantity-spinner' value='" + data.quantity + "'></div><p class='delete-itemBx' onclick=Delete(this);><i class='fas fa-trash-alt'></i><span class='delete-item'>Remove</span></p></div></div>";
+      	});
+      	let c = JSON.parse(localStorage.getItem('details')).length;
+      	Count += '<h1>GIỎ HÀNG CỦA BẠN ( ' + c + ' SẢN PHẨM )</h1>'; 
+    }
+
+    $('.cart-header').html(Count);
+    $('.content').html(Data);
+
+</script>
+
+<script type="text/javascript">
+	$(document).on('click', '.need-sign-in', function() {
+        $("#js-click-login").click();
+    });
+</script>
+
+<script type="text/javascript">
+	
+	function Delete(e){
+		let items = [];
+		let details = [];
+		JSON.parse(localStorage.getItem('items')).map(data=>{
+			if(data.price_id != e.parentElement.parentElement.children[0].textContent){
+				items.push(data);
+			}
+		});
+		JSON.parse(localStorage.getItem('details')).map(data=>{
+			if(data.price_id != e.parentElement.parentElement.children[0].textContent){
+				details.push(data);
+			}
+		});
+		localStorage.setItem('items', JSON.stringify(items));
+		localStorage.setItem('details', JSON.stringify(details));
+
+		let Data = '';
+
+		let Count = '';
+
+	    if(JSON.parse(localStorage.getItem('details')) === null || JSON.parse(localStorage.getItem('details')).length == 0){
+	    	Count += '<h1>GIỎ HÀNG CỦA BẠN ( 0 SẢN PHẨM )</h1>';
+	      	Data += '<p>You have not selected any products!</p><%= link_to "-> Shopping now", root_path, id: "go-shop" %>';
+	      	$('#add_role_view').css("display", "none");
+	    }else{
+	      	JSON.parse(localStorage.getItem('details')).map(data=>{
+	        	Data += "<div class='contentBx'><span class='contentBx-id'>" + data.price_id + "</span><div class='item-image'></div><div class='item-content'><h3>" + data.title + "</h3><div class='item-subcontent'><span class='item-price'>" + data.cost + "</span><input type='number' class='quantity-spinner' value='" + data.quantity + "'></div><p class='delete-itemBx' onclick=Delete(this);><i class='fas fa-trash-alt'></i><span class='delete-item'>Remove</span></p></div></div>";
+	      	});
+	      	let c = JSON.parse(localStorage.getItem('details')).length;
+	      	Count += '<h1>GIỎ HÀNG CỦA BẠN ( ' + c + ' SẢN PHẨM )</h1>'; 
+	    }
+
+	    $('.cart-header').html(Count);
+	    $('.content').html(Data);
+
+	    $('.quantity-spinner').spinner({
+			min: 1,
+			step: 1,
+			stop: function(){
+
+				let quantity = $(this).spinner("value");
+
+				let items = [];
+
+				let details = [];
+
+				let localItems = JSON.parse(localStorage.getItem("items"));
+				let localDetails = JSON.parse(localStorage.getItem("details"));
+
+				localItems.map(data=>{
+
+		            if(data.price_id == $(this).parent().parent().parent().parent().children(':first-child').text()){
+		              	
+		              	let item = {
+				            price_id: data.price_id,
+				            quantity: quantity
+				        };
+
+				        items.push(item);
+
+		            }else{
+		              	items.push(data);
+		            }
+	          	});
+
+	          	localDetails.map(data=>{
+
+	            	if(data.price_id == $(this).parent().parent().parent().parent().children(':first-child').text()){
+		              	
+	            		let detail = {
+	            			price_id: data.price_id,
+				        	title: data.title,
+				        	cost: data.cost,
+				        	quantity: quantity
+	            		};
+
+	            		details.push(detail);
+
+		            }else{
+		              	details.push(data);
+		            }
+	          	});
+	          
+	          
+	          	localStorage.setItem('items',JSON.stringify(items));
+	          	localStorage.setItem('details',JSON.stringify(details));
+
+	          	// if (quantity == 0) {
+	          	// 	Delete(this);
+	          	// }
+
+	          	let no = JSON.parse(localStorage.getItem("items")).length;
+          		$('.iconShopping p').html(no);
+
+			}
+		});
+
+		let no = JSON.parse(localStorage.getItem("items")).length;
+        $('.iconShopping p').html(no);
+	
+	}
+
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$('.quantity-spinner').spinner({
+			min: 1,
+			step: 1,
+			stop: function(){
+
+				let quantity = $(this).spinner("value");
+
+				let items = [];
+
+				let details = [];
+
+				let localItems = JSON.parse(localStorage.getItem("items"));
+				let localDetails = JSON.parse(localStorage.getItem("details"));
+
+				localItems.map(data=>{
+
+		            if(data.price_id == $(this).parent().parent().parent().parent().children(':first-child').text()){
+		              	
+		              	let item = {
+				            price_id: data.price_id,
+				            quantity: quantity
+				        };
+
+				        items.push(item);
+
+		            }else{
+		              	items.push(data);
+		            }
+	          	});
+
+	          	localDetails.map(data=>{
+
+	            	if(data.price_id == $(this).parent().parent().parent().parent().children(':first-child').text()){
+		              	
+	            		let detail = {
+	            			price_id: data.price_id,
+				        	title: data.title,
+				        	cost: data.cost,
+				        	quantity: quantity
+	            		};
+
+	            		details.push(detail);
+
+		            }else{
+		              	details.push(data);
+		            }
+	          	});
+	          
+	          
+	          	localStorage.setItem('items',JSON.stringify(items));
+	          	localStorage.setItem('details',JSON.stringify(details));
+
+	          	// if (quantity == 0) {
+	          	// 	Delete(this);
+	          	// }
+
+	          	let no = JSON.parse(localStorage.getItem("items")).length;
+          		$('.iconShopping p').html(no);
+
+			}
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	    $('#dialog_form').hide();
+	    $('#add_role_view').click(function() {
+	        $('#dialog_form').dialog( {
+	            show : "fade",
+	            hide : "toggle",
+	            width: 500,
+	            height: 600,
+	            resizable: false,
+	            modal: true,
+	            title: "Create Order",
+	            buttons: {
+	                "Cancel" : function() {
+	                    $("#dialog_form").dialog("close");
+	                },
+	                "Send Order": function()
+	                {
+
+	                    let itemData = JSON.parse(localStorage.getItem('items'));
+
+						let name = $('#nameContent').val();
+
+						let phone = $('#phoneContent').val();
+
+						let province = $( "#province option:selected" ).text();
+
+						let district = $( "#district option:selected" ).text();
+
+						let address = $('#addressContent').val();
+
+						if (address == '') {
+							$('#addressContent').attr("placeholder", "Address can't be blank!");
+							$('#addressContent').css("border", "2px solid red");
+						}
+
+						if (phone == '') {
+							$('#phoneContent').attr("placeholder", "Phone can't be blank!");
+							$('#phoneContent').css("border", "2px solid red");
+						}
+
+						if (name == '') {
+							$('#nameContent').attr("placeholder", "Name can't be blank!");
+							$('#nameContent').css("border", "2px solid red");
+						}
+
+						if (province == 'Tỉnh / Thành phố') {
+							$('#province').css("border", "2px solid red");
+						}
+
+						if (district == 'Quận / Huyện') {
+							$('#district').css("border", "2px solid red");
+						}
+						
+						if (name != '' && phone != '' && address != '' && province != 'Tỉnh / Thành phố' && district != 'Quận / Huyện') {
+							$.ajax({
+								url: "/orders",
+								type: "POST",
+								data: { order:
+										{ name: name, phone: phone, province: province, district: district, address: address, order_items_attributes: itemData }
+									}
+								// success: function(){
+								// 	localStorage.clear();
+								// 	$("#dialog_form").dialog("close");
+								// 	swal("Create order successfully!", "", "success").then(function() {
+							 //          	window.location.replace("http://localhost:3000/");
+							 //        });
+								// },
+								// error: function(){
+								// 	swal("Oops, Something Went Wrong", "Please try again later", "error").then(function() {
+							 //          	$("#dialog_form").dialog("close");
+							 //        });
+								// }
+							});
+							localStorage.clear();
+							$("#dialog_form").dialog("close");
+							swal("Create order successfully!", "", "success").then(function() {
+							    window.location.replace("http://localhost:3000/");
+							});
+						}
+					}
+				}
+	        }).prev().find(".ui-dialog-titlebar-close").hide();
+            return false
+	    });
+	});
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#nameContent').click(function(){
+			$('#nameContent').css("border", "1px solid #4caf50");
+		});
+		$('#phoneContent').click(function(){
+			$('#phoneContent').css("border", "1px solid #4caf50");
+		});
+		$('#addressContent').click(function(){
+			$('#addressContent').css("border", "1px solid #4caf50");
+		});
+		$('#province').click(function(){
+			$('#province').css("border", "1px solid #4caf50");
+		});
+		$('#district').click(function(){
+			$('#district').css("border", "1px solid #4caf50");
+		});
+	})
+</script>

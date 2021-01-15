@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   mount Ckeditor::Engine => '/ckeditor'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users,
@@ -26,6 +27,10 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
     resources :rates
   end
+
+  get 'cart', to: 'carts#show'
+
+  resources :orders, only: :create
 
 end
 # as :user do
