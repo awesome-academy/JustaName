@@ -24,11 +24,19 @@
                     <% end %>
                 <% end %>
             </li>
-            <%= link_to(reviews_path) do %>
-                <i class="fas fa-file-alt"></i><br><span>Tin tuc</span>
-            <% end %>
-            <li><a href="#"><i class="fas fa-shopping-cart"></i><br><span>Gio hang</span></a></li>
-
+            <li>
+                <%= link_to(reviews_path) do %>
+                    <i class="fas fa-file-alt"></i><br><span>Tin tuc</span>
+                <% end %>
+            </li>
+            <li>
+                <%= link_to(cart_path) do %>
+                    <div class="iconShopping">
+                        <p>0</p>
+                        <i class="fas fa-shopping-cart"></i><br><span>Gio hang</span>
+                    </div>
+                <% end %>
+            </li>
         </ul>
     </div>
 </div>
@@ -45,8 +53,21 @@
 			fields: {
 				link: "url"
 			}
-		},
+		}
   	};
 
   	$("#text-field").easyAutocomplete(options);
+
+    $(document).ready(function(){
+        const iconShoppingP = document.querySelector('.iconShopping p');
+        let no = 0;
+        if (localStorage.getItem("items") === null){
+            no = 0;
+        } else {
+            JSON.parse(localStorage.getItem('items')).map(data=>{
+                no = JSON.parse(localStorage.getItem("items")).length;
+            });
+        }
+        iconShoppingP.innerHTML = no;
+    });
 </script>

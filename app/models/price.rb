@@ -2,6 +2,7 @@ class Price < ApplicationRecord
 
   	belongs_to :product
   	has_many :configurations, dependent: :destroy
+  	has_many :order_items
 
 
   	validates :price, presence: true
@@ -17,7 +18,5 @@ class Price < ApplicationRecord
 	end
 
   validates :price, presence: true
-  validates :product_id, presence: true
-
 
 end
