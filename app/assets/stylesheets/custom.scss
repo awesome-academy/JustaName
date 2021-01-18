@@ -50,11 +50,12 @@ a{
 }
 
 .header-top .header-search-field form {
+    width: 100%;
     display: flex;
 }
 
 .header-top .header-search-field #text-field {
-    width: 220px;
+    width: 400px;
     height: 35px;
     background-color: #fff;
     border: none;
