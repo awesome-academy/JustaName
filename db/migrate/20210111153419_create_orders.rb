@@ -7,6 +7,7 @@ class CreateOrders < ActiveRecord::Migration[6.0]
       t.string :province
       t.string :district
       t.string :address
+      t.integer :status, default: 0
 
       t.timestamps
     end

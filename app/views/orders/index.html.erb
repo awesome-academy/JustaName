@@ -1,0 +1,39 @@
+<div class="order-index-wrapper">
+	<div class="order-index-header">
+		<h1>Order history</h1>
+		<p><%= @orders.count %> Orders</p>
+	</div>
+	<div class="order-index-content">
+		<% @orders.each do |order| %>
+			<div class="contentBx">
+				<p class="status-line"><%= order.created_at %></p>
+				<div class="content">
+					<div class="content-left">
+						<% order.order_items.each do |order_item| %>
+							<div class="itemBx">
+								<div class="itemImg"></div>
+								<p class="itemTx"><%= order_item.price.product.title %></p>
+							</div>
+						<% end %>
+					</div>
+					<div class="content-right">
+						<a href="#" class="track-order">
+							Track order
+						</a>
+						<a href="#" class="order-detail">
+							View order details
+						</a>
+						<a href="#" class="invoice">
+							Get invoice
+						</a>
+						<a href="#" class="order-edit">
+							Edit order
+						</a>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
+
+

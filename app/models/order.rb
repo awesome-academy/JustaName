@@ -10,4 +10,6 @@ class Order < ApplicationRecord
 	validates :province, presence: true
 	validates :district, presence: true
 	validates :address, presence: true
+
+	enum status: { processing: 1, confirm: 2, completed: 3 }
 end

@@ -17,6 +17,4 @@ class Price < ApplicationRecord
 	    end
 	end
 
-  validates :price, presence: true
-
 end
