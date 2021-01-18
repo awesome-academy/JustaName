@@ -37,4 +37,12 @@ RailsAdmin.config do |config|
        # field :model_id
      end
   end
+
+  config.model Order do
+    include_fields :status, :user_id, :name, :phone, :province, :district, :address, :order_items
+    edit do
+      field :status
+    end
+  end
+
 end

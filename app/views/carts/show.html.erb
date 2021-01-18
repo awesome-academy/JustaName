@@ -3,6 +3,7 @@
 		<div class="cart-header"></div>
 		<div class="content"></div>
 		<div class="subFooter">
+
 			<% if user_signed_in? %>
 				<button type="button" id="add_role_view">Create order</button>
 			<%	else %>
@@ -347,7 +348,7 @@
 	$(document).ready(function() {
 	    $('#dialog_form').hide();
 	    $('#add_role_view').click(function() {
-	        $('#dialog_form').dialog( {
+	        $('#dialog_form').dialog({
 	            show : "fade",
 	            hide : "toggle",
 	            width: 500,
@@ -419,30 +420,26 @@
 							$(".customer").hide();
 						});
 						
-						if (name != '' && phone != '' && address != '' && province != 'Tỉnh / Thành phố' && district != 'Quận / Huyện') {
+						if (name != '' && phone != '' && address != '' && province != 'Tỉnh / Thành phố' && district != 'Quận / Huyện') 
+						{
 							$.ajax({
 								url: "/orders",
 								type: "POST",
 								data: { order:
 										{ name: name, phone: phone, province: province, district: district, address: address, order_items_attributes: itemData }
-									}
-								// success: function(){
-								// 	localStorage.clear();
-								// 	$("#dialog_form").dialog("close");
-								// 	swal("Create order successfully!", "", "success").then(function() {
-							 //          	window.location.replace("http://localhost:3000/");
-							 //        });
-								// },
-								// error: function(){
-								// 	swal("Oops, Something Went Wrong", "Please try again later", "error").then(function() {
-							 //          	$("#dialog_form").dialog("close");
-							 //        });
-								// }
-							});
-							localStorage.clear();
-							$("#dialog_form").dialog("close");
-							swal("Create order successfully!", "", "success").then(function() {
-							    window.location.replace("http://localhost:3000/");
+									},
+								success: function(){
+									localStorage.clear();
+									$("#dialog_form").dialog("close");
+									swal("Create order successfully!", "", "success").then(function() {
+							          	window.location.replace("http://localhost:3000/");
+							        });
+								},
+								error: function(){
+									swal("Oops, Something Went Wrong", "Please try again later", "error").then(function() {
+							          	$("#dialog_form").dialog("close");
+							        });
+								}
 							});
 						}
 					}

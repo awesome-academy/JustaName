@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
   get 'cart', to: 'carts#show'
 
-  resources :orders, only: :create
+  resources :orders, only: [:create, :index, :show]
 
   resources :payments do
     collection do

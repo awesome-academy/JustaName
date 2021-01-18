@@ -1,5 +1,5 @@
 .wrapper-form-login{
-  z-index: 2;
+  z-index: 1000;
   width: 20%;
   position: fixed;
   z-index: 3;
@@ -8,6 +8,8 @@
   background:rgb(235, 240, 234);
   padding: 5px;
   padding-bottom: 10px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.2),
+              -5px -5px 15px rgba(0,0,0,0.1);
 }
 .wrapper-form-login p{
   font-size: 18px;

@@ -4,9 +4,15 @@ class OrdersController < ApplicationController
 
 	def create
 		@order = current_user.orders.build order_params
-		if @order.save
-			redirect_to root_path
-		end
+		@order.status = 0
+	end
+
+	def index
+		@orders = current_user.orders.all
+	end
+
+	def show
+		@order = Order.find(params[:id])
 	end
 
 	private
