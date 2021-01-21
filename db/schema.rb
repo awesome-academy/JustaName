@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2021_01_12_042807) do
+ActiveRecord::Schema.define(version: 2021_01_18_033846) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -120,6 +119,16 @@ ActiveRecord::Schema.define(version: 2021_01_12_042807) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "payments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "expires_at"
+    t.datetime "purchased_at"
+    t.integer "price_id"
+    t.string "status"
+    t.datetime "deleted_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "prices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.decimal "price", precision: 10
@@ -145,12 +154,11 @@ ActiveRecord::Schema.define(version: 2021_01_12_042807) do
   end
 
   create_table "rates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "laptop_id"
+    t.integer "product_id"
     t.integer "user_id"
     t.integer "star"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "product_id"
   end
 
   create_table "requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

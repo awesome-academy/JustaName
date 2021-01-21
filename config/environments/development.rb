@@ -31,6 +31,12 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+
+
+
+  USERNAME='admin_api1.tuanmonkey.com'
+  PASSWORD='A8XWXP5DAEPF57WK'
+  SIGNATURE='AZcyImyYGhhfrn3lf7NOAmSQ.RiaAbMbOzwZIrRCuiZfeEHDdclxGeFX'
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
