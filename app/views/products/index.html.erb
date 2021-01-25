@@ -1,9 +1,1 @@
 <%= render @products %>
-<%== pagy_bootstrap_nav(@pagy) %>
-<%= link_to '10 triệu-15 triệu', products_path(filter_type: "from10to15"), price_min: 10000000, price_max: 15000000 %>
-<%= link_to '15 triệu-20 triệu', products_path(filter_type: "from15to20"), price_min: 15000000, price_max: 20000000 %>
-<%= link_to '20 triệu-25 triệu', products_path(filter_type: "from20to25"), price_min: 20000000, price_max: 25000000 %>
-<%= link_to '25 triệu-30 triệu', products_path(filter_type: "from25to30"), price_min: 25000000, price_max: 30000000 %>
-<%= link_to '30 triệu-40 triệu', products_path(filter_type: "from30to40"), price_min: 30000000, price_max: 40000000 %>
-<%= link_to '40 triệu-50 triệu', products_path(filter_type: "from40to50"), price_min: 40000000, price_max: 50000000 %>
-<%= link_to 'Trên 50 triệu', products_path(filter_type: "from50"), price_min: 50000000%>

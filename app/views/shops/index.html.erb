@@ -1,0 +1,402 @@
+<div class="product-index-wrapper">
+	<div class="filter-path">
+		<h1>FILTER</h1>
+
+		<h3>Mức giá</h3>
+		<form class="form price-form">
+			<div class="form-control">
+				<input type="checkbox" id="price-all" class="all" value="">
+				<label for="price-all">Tất cả</label>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" name="price" id="price-to-10" value="priceto10">
+				<label for="price-to-10">Dưới 10 triệu</label>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" name="price" id="price-10-to-20" value="pricefrom10to20">
+				<label for="price-10-to-20">Từ 10 - 20 triệu</label>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" name="price" id="price-20-to-30" value="pricefrom20to30">
+				<label for="price-20-to-30">Từ 20 - 30 triệu</label>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" name="price" id="price-30-to-40" value="pricefrom30to40">
+				<label for="price-30-to-40">Từ 30 - 40 triệu</label>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" name="price" id="price-40-to-50" value="pricefrom40to50">
+				<label for="price-40-to-50">Từ 40 - 50 triệu</label>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" name="price" id="price-from-50" value="pricefrom50">
+				<label for="price-from-50">Trên 50 triệu</label>
+			</div>
+		</form>
+
+		<h3>CPU</h3>
+		<form class="form cpu-form">
+			<div class="form-control">
+				<input type="checkbox" id="cpu-all" class="all" value="">
+				<label for="cpu-all">Tất cả</label>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" name="cpu" id="core-i3" value="corei3">
+				<label for="core-i3">Intel Core i3</label>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" name="cpu" id="core-i5" value="corei5">
+				<label for="core-i5">Intel Core i5</label>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" name="cpu" id="core-i7" value="corei7">
+				<label for="core-i7">Intel Core i7</label>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" name="cpu" id="core-i9" value="corei9">
+				<label for="core-i9">Intel Core i9</label>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" name="cpu" id="xeon" value="xeon">
+				<label for="xeon">Intel Xeon</label>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" name="cpu" id="ryzen-3" value="ryzen3">
+				<label for="ryzen-3">AMD Ryzen 3</label>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" name="cpu" id="ryzen-5" value="ryzen5">
+				<label for="ryzen-5">AMD Ryzen 5</label>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" name="cpu" id="ryzen-7" value="ryzen7">
+				<label for="ryzen-7">AMD Ryzen 7</label>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" name="cpu" id="ryzen-9" value="ryzen9">
+				<label for="ryzen-9">AMD Ryzen 9</label>
+			</div>
+		</form>
+
+		<h3>RAM</h3>
+		<form class="form ram-form">
+			<div class="form-control">
+				<input type="checkbox" id="ram-all" class="all" value="">
+				<label for="ram-all">Tất cả</label>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" name="ram" id="ram4" value="ram4">
+				<label for="ram4">4GB</label>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" name="ram" id="ram8" value="ram8">
+				<label for="ram8">8GB</label>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" name="ram" id="ram16" value="ram16">
+				<label for="ram16">16GB</label>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" name="ram" id="ram32" value="ram32">
+				<label for="ram32">32GB</label>
+			</div>
+			<div class="form-control">
+				<input type="checkbox" name="ram" id="ram64" value="ram64">
+				<label for="ram64">64GB</label>
+			</div>
+		</form>
+
+	</div>
+	<div class="container">
+		<div class="product-index-header">
+			<p>SHOP <span>(<%= @products.length %> sản phẩm)</span></p>
+			<div class="dropdown">
+				<span>Sort by: <span id="sort-by-content"></span></span>
+				<i class="fas fa-chevron-circle-down"></i>
+				<ul class="dropdown-sort">
+					<li id="sort_by_lastest">Lastest</li>
+					<li id="sort_by_asc_price">ASC price</li>
+					<li id="sort_by_desc_price">DESC price</li>
+				</ul>
+			</div>
+		</div>
+		<div class="content">
+			<% @products.each do |product| %>
+				<%= link_to(product_path(product)) do %>
+					<div class="contentBx">
+						<div class="contetn-img">
+							<%= image_tag product.product_photos.first.photo_url.to_s %>
+						</div>
+						<%= link_to(product_path(product)) do %>
+							<%= product.title %>
+						<% end %>
+						<p>
+							<%= product.prices.first.price %>
+						</p>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+		<div class="product-index-footer">
+			<%== pagy_bootstrap_nav(@pagy_a) %>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		let current_url = window.location.href;
+
+		$('.form .form-control .all').each(function(){
+			$(this).prop('checked', true);
+		})
+
+		$('.price-form .form-control [type="checkbox"][name="price"]').each(function(){
+			let price_value = $(this).val();
+			if (current_url.indexOf(price_value) != -1) {
+				$(this).prop('checked', true);
+				$('.price-form .form-control #price-all').prop('checked', false);
+				// toi ve viet tiep
+			}
+		});
+
+		$('.cpu-form .form-control [type="checkbox"][name="cpu"]').each(function(){
+			let cpu_value = $(this).val();
+			if (current_url.indexOf(cpu_value) != -1) {
+				$(this).prop('checked', true);
+				$('.cpu-form .form-control #cpu-all').prop('checked', false);
+			}
+		});
+
+		$('.ram-form .form-control [type="checkbox"][name="ram"]').each(function(){
+			let ram_value = $(this).val();
+			if (current_url.indexOf(ram_value) != -1) {
+				$(this).prop('checked', true);
+				$('.ram-form .form-control #ram-all').prop('checked', false);
+			}
+		});
+
+		$('.form .form-control [type="checkbox"]:not(.all)').click(function(){
+			if (current_url.indexOf('?') != -1) {
+				if (current_url.indexOf('&') != -1){
+					let filter_url = '';
+					let position = current_url.indexOf('&');
+					let origin_url = current_url.slice(0, position);
+					$('.price-form .form-control [type="checkbox"][name="price"]').each(function(){
+						let choose = $(this).is(":checked");
+						if (choose) {
+							let option = $(this).val();
+							filter_url += '&filter_by_price%5B%5D=' + option;
+						}
+					});
+
+					$('.cpu-form .form-control [type="checkbox"][name="cpu"]').each(function(){
+						let choose = $(this).is(":checked");
+						if (choose) {
+							let option = $(this).val();
+							filter_url += '&filter_by_cpu%5B%5D=' + option;
+						}
+					});
+
+					$('.ram-form .form-control [type="checkbox"][name="ram"]').each(function(){
+						let choose = $(this).is(":checked");
+						if (choose) {
+							let option = $(this).val();
+							filter_url += '&filter_by_ram%5B%5D=' + option;
+						}
+					});
+
+					let redirect_url = origin_url + filter_url;
+					window.location.replace(redirect_url);
+				} else {
+					$('.price-form .form-control [type="checkbox"][name="price"]').each(function(){
+						let choose = $(this).is(":checked");
+						if (choose) {
+							let option = $(this).val();
+							filter_url = '&filter_by_price%5B%5D=' + option;
+						}
+					});
+
+					$('.cpu-form .form-control [type="checkbox"][name="cpu"]').each(function(){
+						let choose = $(this).is(":checked");
+						if (choose) {
+							let option = $(this).val();
+							filter_url = '&filter_by_cpu%5B%5D=' + option;
+						}
+					});
+
+					$('.ram-form .form-control [type="checkbox"][name="ram"]').each(function(){
+						let choose = $(this).is(":checked");
+						if (choose) {
+							let option = $(this).val();
+							filter_url = '&filter_by_ram%5B%5D=' + option;
+						}
+					});
+
+					let redirect_url = current_url + filter_url;
+					window.location.replace(redirect_url);
+				}
+			} else {
+				// function ....
+			}
+		});
+
+		var price_choose = $('.price-form .form-control #price-all').is(":checked");
+		$('.price-form .form-control #price-all').click(function(){
+			if (price_choose) {
+				$(this).prop('checked', true);
+			} else {
+				$('.price-form .form-control [type="checkbox"][name="price"]').each(function(){
+					$(this).prop('checked', false);
+				});
+
+				if (current_url.indexOf('filter_brand') != -1){
+					let filter_url = '';
+					let position = current_url.indexOf('&');
+					let origin_url = current_url.slice(0, position);
+
+					$('.cpu-form .form-control [type="checkbox"][name="cpu"]').each(function(){
+						let choose = $(this).is(":checked");
+						if (choose) {
+							let option = $(this).val();
+							filter_url = '&filter_by_cpu%5B%5D=' + option;
+						}
+					});
+
+					$('.ram-form .form-control [type="checkbox"][name="ram"]').each(function(){
+						let choose = $(this).is(":checked");
+						if (choose) {
+							let option = $(this).val();
+							filter_url = '&filter_by_ram%5B%5D=' + option;
+						}
+					});
+
+					let redirect_url = origin_url + filter_url;
+					window.location.replace(redirect_url);
+				} else {
+					//
+				}
+			}
+		});
+
+		var cpu_choose = $('.cpu-form .form-control #cpu-all').is(":checked");
+		$('.cpu-form .form-control #cpu-all').click(function(){
+			if (cpu_choose) {
+				$(this).prop('checked', true);
+			} else {
+				$('.cpu-form .form-control [type="checkbox"][name="cpu"]').each(function(){
+					$(this).prop('checked', false);
+				});
+
+				if (current_url.indexOf('filter_brand') != -1){
+					let filter_url = '';
+					let position = current_url.indexOf('&');
+					let origin_url = current_url.slice(0, position);
+
+					$('.price-form .form-control [type="checkbox"][name="price"]').each(function(){
+						let choose = $(this).is(":checked");
+						if (choose) {
+							let option = $(this).val();
+							filter_url = '&filter_by_price%5B%5D=' + option;
+						}
+					});
+
+					$('.ram-form .form-control [type="checkbox"][name="ram"]').each(function(){
+						let choose = $(this).is(":checked");
+						if (choose) {
+							let option = $(this).val();
+							filter_url = '&filter_by_ram%5B%5D=' + option;
+						}
+					});
+					
+					let redirect_url = origin_url + filter_url;
+					window.location.replace(redirect_url);
+				} else {
+					//
+				}
+			}
+		});
+
+		var ram_choose = $('.ram-form .form-control #ram-all').is(":checked");
+		$('.ram-form .form-control #ram-all').click(function(){
+			if (ram_choose) {
+				$(this).prop('checked', true);
+			} else {
+				$('.ram-form .form-control [type="checkbox"][name="ram"]').each(function(){
+					$(this).prop('checked', false);
+				});
+
+				if (current_url.indexOf('filter_brand') != -1){
+					let filter_url = '';
+					let position = current_url.indexOf('&');
+					let origin_url = current_url.slice(0, position);
+
+					$('.price-form .form-control [type="checkbox"][name="price"]').each(function(){
+						let choose = $(this).is(":checked");
+						if (choose) {
+							let option = $(this).val();
+							filter_url = '&filter_by_price%5B%5D=' + option;
+						}
+					});
+
+					$('.cpu-form .form-control [type="checkbox"][name="cpu"]').each(function(){
+						let choose = $(this).is(":checked");
+						if (choose) {
+							let option = $(this).val();
+							filter_url = '&filter_by_cpu%5B%5D=' + option;
+						}
+					});
+
+					let redirect_url = origin_url + filter_url;
+					window.location.replace(redirect_url);
+				} else {
+					//
+				}
+			}
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.dropdown').click(function(){
+			$('.dropdown-sort').toggleClass("active");
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		let current_url = window.location.href;
+		if (current_url.indexOf("&sort_by") != -1) {
+			let position = current_url.indexOf('&sort_by');
+			let origin_url = current_url.slice(0, position);
+			$('#sort_by_lastest').click(function(){
+				let redirect_url = origin_url + "&sort_by=lastest"
+				window.location.replace(redirect_url);
+			});
+			$('#sort_by_asc_price').click(function(){
+				let redirect_url = origin_url + "&sort_by=price_asc"
+				window.location.replace(redirect_url);
+			});
+			$('#sort_by_desc_price').click(function(){
+				let redirect_url = origin_url + "&sort_by=price_desc"
+				window.location.replace(redirect_url);
+			});
+		} else {
+			$('#sort_by_lastest').click(function(){
+				let redirect_url = current_url + "&sort_by=lastest"
+				window.location.replace(redirect_url);
+			});
+			$('#sort_by_asc_price').click(function(){
+				let redirect_url = current_url + "&sort_by=price_asc"
+				window.location.replace(redirect_url);
+			});
+			$('#sort_by_desc_price').click(function(){
+				let redirect_url = current_url + "&sort_by=price_desc"
+				window.location.replace(redirect_url);
+			});
+		}
+	});
+</script>

@@ -1,20 +1,320 @@
 <div class="header-bg"></div>
 <div class="header">
     <ul class="menu">
-        <li>
-            <%= link_to(products_path(filter_type: "filter_by_macbook")) do %>
+        <li class="mega-menu-macbook-Bt">
+            <%= link_to(shops_path(filter_brand: "filter_by_macbook")) do %>
                 <i class="fab fa-apple"></i>&nbsp;&nbsp;<span>MACBOOK</span>
             <% end %>
+
+            <div class="mega-menu mega-menu-macbook">
+                <div class="mega-menu-has-submenu">
+                    <h5>
+                        <%= link_to(shops_path(filter_brand: "macbook_pro")) do %>
+                            Macbook Pro
+                        <% end %>
+                    </h5>
+                    <ul>
+                        <% Model.macbook_pro.each do |macbook_pro| %>
+                        <% macbook_pro_model = "model#{macbook_pro.id}" %>
+                            <li>
+                                <%= link_to(shops_path(filter_brand: macbook_pro_model)) do %>
+                                    <i class="fas fa-angle-double-right"></i>
+                                    <%= macbook_pro.name %>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="mega-menu-has-submenu">
+                    <h5>
+                        <%= link_to(shops_path(filter_brand: "macbook_air")) do %>
+                            Macbook Air
+                        <% end %>
+                    </h5>
+                    <ul>
+                        <% Model.macbook_air.each do |macbook_air| %>
+                        <% macbook_air_model = "model#{macbook_air.id}" %>
+                            <li>
+                                <%= link_to(shops_path(filter_brand: macbook_air_model)) do %>
+                                    <i class="fas fa-angle-double-right"></i>
+                                    <%= macbook_air.name %>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+
         </li>
-        <li>
-            <%= link_to(products_path(filter_type: "filter_by_surface")) do %>
+        <li class="mega-menu-surface-Bt">
+            <%= link_to(shops_path(filter_brand: "filter_by_surface")) do %>
                 <i class="fab fa-windows"></i>&nbsp;&nbsp;<span>SURFACE</span>
             <% end %>
+            
+            <div class="mega-menu mega-menu-surface">
+                <div class="mega-menu-has-submenu">
+                    <h5>
+                        <%= link_to(shops_path(filter_brand: "surface_pro")) do %>
+                            Surface Pro
+                        <% end %>
+                    </h5>
+                    <ul>
+                        <% Model.surface_pro.each do |surface_pro| %>
+                            <% surface_pro_model = "model#{surface_pro.id}" %>
+                            <li>
+                                <%= link_to(shops_path(filter_brand: surface_pro_model)) do %>
+                                    <i class="fas fa-angle-double-right"></i>
+                                    <%= surface_pro.name %>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="mega-menu-has-submenu">
+                    <h5>
+                        <%= link_to(shops_path(filter_brand: "surface_laptop")) do %>
+                            Surface Laptop
+                        <% end %>
+                    </h5>
+                    <ul>
+                        <% Model.surface_laptop.each do |surface_laptop| %>
+                        <% surface_laptop_model = "model#{surface_laptop.id}" %>
+                            <li>
+                                <%= link_to(shops_path(filter_brand: surface_laptop_model)) do %>
+                                    <i class="fas fa-angle-double-right"></i>
+                                    <%= surface_laptop.name %>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="mega-menu-has-submenu">
+                    <h5>
+                        <%= link_to(shops_path(filter_brand: "surface_book")) do %>
+                            Surface Book
+                        <% end %>
+                    </h5>
+                    <ul>
+                        <% Model.surface_book.each do |surface_book| %>
+                        <% surface_book_model = "model#{surface_book.id}" %>
+                            <li>
+                                <%= link_to(shops_path(filter_brand: surface_book_model)) do %>
+                                    <i class="fas fa-angle-double-right"></i>
+                                    <%= surface_book.name %>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="mega-menu-has-submenu">
+                    <h5>
+                        <%= link_to(shops_path(filter_brand: "surface_go")) do %>
+                            Surface Go
+                        <% end %>
+                    </h5>
+                    <ul>
+                        <% Model.surface_go.each do |surface_go| %>
+                        <% surface_go_model = "model#{surface_go.id}" %>
+                            <li>
+                                <%= link_to(shops_path(filter_brand: surface_go_model)) do %>
+                                    <i class="fas fa-angle-double-right"></i>
+                                    <%= surface_go.name %>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+
         </li>
-        <li><a href="#"><i class="fas fa-laptop"></i>&nbsp;&nbsp;<span>LAPTOP MOI</span></a></li>
+        <li class="mega-menu-all-new-Bt">
+            <a href="#">
+                <i class="fas fa-laptop"></i>&nbsp;&nbsp;<span>LAPTOP MOI</span>
+            </a>
+
+            <div class="mega-menu mega-menu-all-new">
+                <div class="mega-menu-has-submenu">
+                    <h5>
+                        <%= link_to(shops_path(filter_brand: "filter_by_dell")) do %>
+                            Laptop Dell
+                        <% end %>
+                    </h5>
+                    <ul>
+                        <% Brand.find(3).models.each do |dell| %>
+                        <% dell_model = "model#{dell.id}" %>
+                            <li>
+                                <%= link_to(shops_path(filter_brand: dell_model)) do %>
+                                    <i class="fas fa-angle-double-right"></i>
+                                    <%= dell.name %>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="mega-menu-has-submenu">
+                    <h5>
+                        <%= link_to(shops_path(filter_brand: "filter_by_hp")) do %>
+                            Laptop HP
+                        <% end %>
+                    </h5>
+                    <ul>
+                        <% Brand.find(4).models.each do |hp| %>
+                        <% hp_model = "model#{hp.id}" %>
+                            <li>
+                                <%= link_to(shops_path(filter_brand: hp_model)) do %>
+                                    <i class="fas fa-angle-double-right"></i>
+                                    <%= hp.name %>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="mega-menu-has-submenu">
+                    <h5>
+                        <%= link_to(shops_path(filter_brand: "filter_by_razer")) do %>
+                            Laptop Razer
+                        <% end %>
+                    </h5>
+                    <ul>
+                        <% Brand.find(5).models.each do |razer| %>
+                        <% razer_model = "model#{razer.id}" %>
+                            <li>
+                                <%= link_to(shops_path(filter_brand: razer_model)) do %>
+                                    <i class="fas fa-angle-double-right"></i>
+                                    <%= razer.name %>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="mega-menu-has-submenu">
+                    <h5>
+                        <%= link_to(shops_path(filter_brand: "filter_by_acer")) do %>
+                            Laptop Acer
+                        <% end %>
+                    </h5>
+                    <ul>
+                        <% Brand.find(6).models.each do |acer| %>
+                        <% acer_model = "model#{acer.id}" %>
+                            <li>
+                                <%= link_to(shops_path(filter_brand: acer_model)) do %>
+                                    <i class="fas fa-angle-double-right"></i>
+                                    <%= acer.name %>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="mega-menu-has-submenu">
+                    <h5>
+                        <%= link_to(shops_path(filter_brand: "filter_by_asus")) do %>
+                            Laptop Asus
+                        <% end %>
+                    </h5>
+                    <ul>
+                        <% Brand.find(7).models.each do |asus| %>
+                        <% asus_model = "model#{asus.id}" %>
+                            <li>
+                                <%= link_to(shops_path(filter_brand: asus_model)) do %>
+                                    <i class="fas fa-angle-double-right"></i>
+                                    <%= asus.name %>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="mega-menu-has-submenu">
+                    <h5>
+                        <%= link_to(shops_path(filter_brand: "filter_by_lenovo")) do %>
+                            Laptop Lenovo
+                        <% end %>
+                    </h5>
+                    <ul>
+                        <% Brand.find(8).models.each do |lenovo| %>
+                        <% lenovo_model = "model#{lenovo.id}" %>
+                            <li>
+                                <%= link_to(shops_path(filter_brand: lenovo_model)) do %>
+                                    <i class="fas fa-angle-double-right"></i>
+                                    <%= lenovo.name %>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="mega-menu-has-submenu">
+                    <h5>
+                        <%= link_to(shops_path(filter_brand: "filter_by_lg")) do %>
+                            Laptop LG
+                        <% end %>
+                    </h5>
+                    <ul>
+                        <% Brand.find(9).models.each do |lg| %>
+                        <% lg_model = "model#{lg.id}" %>
+                            <li>
+                                <%= link_to(shops_path(filter_brand: lg_model)) do %>
+                                    <i class="fas fa-angle-double-right"></i>
+                                    <%= lg.name %>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="mega-menu-has-submenu">
+                    <h5>
+                        <%= link_to(shops_path(filter_brand: "filter_by_msi")) do %>
+                            Laptop MSI
+                        <% end %>
+                    </h5>
+                    <ul>
+                        <% Brand.find(10).models.each do |msi| %>
+                        <% msi_model = "model#{msi.id}" %>
+                            <li>
+                                <%= link_to(shops_path(filter_brand: msi_model)) do %>
+                                    <i class="fas fa-angle-double-right"></i>
+                                    <%= msi.name %>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+
+        </li>
         <li><a href="#"><i class="fas fa-laptop"></i>&nbsp;&nbsp;<span>LAPTOP CU</span></a></li>
         <li><a href="#"><i class="fas fa-headphones"></i>&nbsp;&nbsp;<span>PHU KIEN</span></a></li>
         <li><a href="#"><i class="fas fa-donate"></i>&nbsp;&nbsp;<span>TRA GOP</span></a></li>
         <li><a href="#"><i class="fas fa-piggy-bank"></i>&nbsp;&nbsp;<span>KHUYEN MAI</span></a></li>
     </ul>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.mega-menu-macbook-Bt').mouseenter(function(){
+            $(this).addClass("make-color-macbook");
+            $('.mega-menu-macbook').addClass("mega-menu-active");
+        });
+        $('.mega-menu-macbook-Bt').mouseleave(function(){
+            $(this).removeClass("make-color-macbook");
+            $('.mega-menu-macbook').removeClass("mega-menu-active");
+        });
+
+        $('.mega-menu-surface-Bt').mouseenter(function(){
+            $(this).addClass("make-color-surface");
+            $('.mega-menu-surface').addClass("mega-menu-active");
+        });
+        $('.mega-menu-surface-Bt').mouseleave(function(){
+            $(this).removeClass("make-color-surface");
+            $('.mega-menu-surface').removeClass("mega-menu-active");
+        });
+
+        $('.mega-menu-all-new-Bt').mouseenter(function(){
+            $(this).addClass("make-color-all-new");
+            $('.mega-menu-all-new').addClass("mega-menu-active");
+        });
+        $('.mega-menu-all-new-Bt').mouseleave(function(){
+            $(this).removeClass("make-color-all-new");
+            $('.mega-menu-all-new').removeClass("mega-menu-active");
+        });
+    });
+</script>
+
