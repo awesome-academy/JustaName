@@ -43,13 +43,7 @@
 			<%= label_tag :address, "Address", class: "control-label" %>
 			<%= text_field_tag(:address, nil, placeholder: "Your address ...", id: "addressContent", class:"form-cotrol") %>
 		</div>
-		# <%= form_for @payment, url: payments_path(@payment) do |f| %>
-			<div class="form-group">
-			  <%= f.label :quantity %>
-			  <%= f.text_field :quantity %>
-			</div>
-			<%=  "Pay on Paypal", type: "image",  class: "btn btn-primary btn-medium center-block", id: 'paypal_submit',  src:'https://www.paypal.com/en_US/i/btn/btn_dg_pay_w_paypal.gif' %>
-		#   <% end %>
+	<%= render 'payments/new' %>
 	<% end %>
 </div>
 
@@ -126,7 +120,30 @@
           })
         })
       })
-    })
+	});
+	paypal.Buttons({
+      env: "#{ENV['PAYPAL_ENV']}",
+      createOrder: function() {
+        $('#order-type').val("paypal");
+        if (isPayment()) {
+          return $.post("#{paypal_create_payment_url}", $('#order-details').serialize()).then(function(data) {
+            return data.token;
+          });
+        } else {
+        }
+      },
+      onApprove: function(data) {
+        if (isPayment()) {
+          return $.post("#{paypal_execute_payment_url}", {
+            paymentID: data.paymentID,
+            payerID:   data.payerID
+          }).then(function() {
+            submitOrderPaypal(data.paymentID)
+          });
+        } else {
+        }
+      }
+    }).render('#submit-paypal');
 	//]]>
 </script>
 

@@ -5,7 +5,6 @@ class Review < ApplicationRecord
     include Elasticsearch::Model
     include Elasticsearch::Model::Callbacks
 
-    Review.import(force: true)
 
   	validates :title, presence: true, length: { maximum: 140 }
   	validates :content, presence: true

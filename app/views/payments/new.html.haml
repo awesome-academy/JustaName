@@ -4,17 +4,13 @@
 %div
   .row
     .row.col-md-6.col-md-offset-3
-      <%= form_for @payment, url: payments_path(@payment) do |f| %>
-        <div class="form-group">
-          <%= f.label :total %>
-          <%= f.text_field :total %>
-        </div>
-        <%= f.submit "Pay on Paypal", type: "image",  class: "btn btn-primary btn-medium center-block", id: 'paypal_submit',  src:'https://www.paypal.com/en_US/i/btn/btn_dg_pay_w_paypal.gif' %>
-      <% end %>
+      = form_for @payment, url: payments_path(@payment) do |f|
+        .form-group
+         
+        = f.submit "Pay on Paypal", type: "image",  class: "btn btn-primary btn-medium center-block", id: 'paypal_submit',  src:'https://www.paypal.com/en_US/i/btn/btn_dg_pay_w_paypal.gif' 
+        %script{src: "https://www.paypalobjects.com/js/external/dg.js"}
 
 
-%script{src: "https://www.paypalobjects.com/js/external/dg.js"} 
-        
 :javascript
   $(function(){
     var sandbox = true;

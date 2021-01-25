@@ -4,4 +4,7 @@ class OrderItem < ApplicationRecord
 	
 	validates :price_id, presence: true
 	validates :quantity, presence: true
+
+
+
 end

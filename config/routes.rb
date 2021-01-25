@@ -7,8 +7,9 @@ Rails.application.routes.draw do
       omniauth_callbacks: "users/omniauth_callbacks",
       sessions: 'users/sessions'
     }
-
-  root 'staticpages#home'
+  post 'orders/paypal/create_payment'  => 'orders#paypal_create_payment', as: :paypal_create_payment
+  post 'orders/paypal/execute_payment'  => 'orders#paypal_execute_payment', as: :paypal_execute_payment
+  
   get 'pages/home', to: 'static_pages#home'
   get 'pages/help', to: 'static_pages#help'
   get 'pages/review', to: 'static_pages#review'

@@ -14,6 +14,7 @@ gem 'has_scope'
 gem "money-rails"
 gem "haml"
 gem "paypal-express"
+gem 'paypal-sdk-rest'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
