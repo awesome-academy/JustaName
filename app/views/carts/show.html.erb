@@ -3,12 +3,12 @@
 		<div class="cart-header"></div>
 		<div class="content"></div>
 		<div class="subFooter">
-
 			<% if user_signed_in? %>
 				<button type="button" id="add_role_view">Create order</button>
 			<%	else %>
-				<p>You need <span class="need-sign-in">sign in</span> to create an order!</p>
+				<button type="button" id="need-sign-in">Create order</button>
 			<% end %>
+			<span class="totalBx">Total: <span class="total-price"></span></span>
 		</div>
 	</div>
 </div>
@@ -126,8 +126,10 @@
 
 	$(document).ready(function(){
 		if(JSON.parse(localStorage.getItem('details')) === null || JSON.parse(localStorage.getItem('details')).length == 0){
+			$('.subFooter').css("display", "none");
 			$('#add_role_view').css("display", "none");
 		} else {
+			$('.subFooter').css("display", "block");
 			$('#add_role_view').css("display", "block");
 		}
 	})
@@ -135,32 +137,47 @@
 </script>
 
 <script type="text/javascript">
+	$(document).ready(function(){
+		let Data = '';
 
-	let Data = '';
+		let Count = '';
 
-	let Count = '';
+	    if(JSON.parse(localStorage.getItem('details')) === null || JSON.parse(localStorage.getItem('details')).length == 0){
+	    	Count += '<h1>GIỎ HÀNG CỦA BẠN ( 0 SẢN PHẨM )</h1>';
+	      	Data += '<p>You have not selected any products!</p><%= link_to "-> Shopping now", root_path, id: "go-shop" %>';
+	      	$('#add_role_view').css("display", "none");
+	    }else{
+	      	JSON.parse(localStorage.getItem('details')).map(data=>{
+	        	Data += "<div class='contentBx'><span class='contentBx-id'>" + data.price_id + "</span><div class='item-image'></div><div class='item-content'><h3>" + data.title + "</h3><div class='item-subcontent'><span class='item-price'>" + data.cost + "</span><input type='number' class='quantity-spinner' value='" + data.quantity + "'></div><p class='delete-itemBx' onclick=Delete(this);><i class='fas fa-trash-alt'></i><span class='delete-item'>Remove</span></p><p class='subtotal'></p></div></div>";
+	      	});
+	      	let c = JSON.parse(localStorage.getItem('details')).length;
+	      	Count += '<h1>GIỎ HÀNG CỦA BẠN ( ' + c + ' SẢN PHẨM )</h1>'; 
+	    }
 
-    if(JSON.parse(localStorage.getItem('details')) === null || JSON.parse(localStorage.getItem('details')).length == 0){
-    	Count += '<h1>GIỎ HÀNG CỦA BẠN ( 0 SẢN PHẨM )</h1>';
-      	Data += '<p>You have not selected any products!</p><%= link_to "-> Shopping now", root_path, id: "go-shop" %>';
-      	$('#add_role_view').css("display", "none");
-    }else{
-      	JSON.parse(localStorage.getItem('details')).map(data=>{
-        	Data += "<div class='contentBx'><span class='contentBx-id'>" + data.price_id + "</span><div class='item-image'></div><div class='item-content'><h3>" + data.title + "</h3><div class='item-subcontent'><span class='item-price'>" + data.cost + "</span><input type='number' class='quantity-spinner' value='" + data.quantity + "'></div><p class='delete-itemBx' onclick=Delete(this);><i class='fas fa-trash-alt'></i><span class='delete-item'>Remove</span></p></div></div>";
-      	});
-      	let c = JSON.parse(localStorage.getItem('details')).length;
-      	Count += '<h1>GIỎ HÀNG CỦA BẠN ( ' + c + ' SẢN PHẨM )</h1>'; 
-    }
-
-    $('.cart-header').html(Count);
-    $('.content').html(Data);
-
+	    $('.cart-header').html(Count);
+	    $('.content').html(Data);
+	});
 </script>
 
 <script type="text/javascript">
-	$(document).on('click', '.need-sign-in', function() {
-        $("#js-click-login").click();
-    });
+	$(document).ready(function(){
+		$('.subtotal').each(function(){
+			let subprice = $(this).parent().find('.item-subcontent .item-price').text();
+			let subquantity = $(this).parent().find('.item-subcontent input').val();
+			$(this).html(subprice*subquantity);
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		let total_price = 0;
+		$('.subtotal').each(function(){
+			let sub_item_price = $(this).text();
+			total_price += parseInt(sub_item_price);
+		});
+		$('.total-price').html(total_price);
+	});
 </script>
 
 <script type="text/javascript">
@@ -181,6 +198,21 @@
 		localStorage.setItem('items', JSON.stringify(items));
 		localStorage.setItem('details', JSON.stringify(details));
 
+		if(JSON.parse(localStorage.getItem('details')) === null || JSON.parse(localStorage.getItem('details')).length == 0){
+			$('.subFooter').css("display", "none");
+			$('#add_role_view').css("display", "none");
+		} else {
+			$('.subFooter').css("display", "block");
+			$('#add_role_view').css("display", "block");
+		}
+
+		let total_price = 0;
+		$('.subtotal').each(function(){
+			let sub_item_price = $(this).text();
+			total_price += parseInt(sub_item_price);
+		});
+		$('.total-price').html(total_price);
+
 		let Data = '';
 
 		let Count = '';
@@ -191,7 +223,7 @@
 	      	$('#add_role_view').css("display", "none");
 	    }else{
 	      	JSON.parse(localStorage.getItem('details')).map(data=>{
-	        	Data += "<div class='contentBx'><span class='contentBx-id'>" + data.price_id + "</span><div class='item-image'></div><div class='item-content'><h3>" + data.title + "</h3><div class='item-subcontent'><span class='item-price'>" + data.cost + "</span><input type='number' class='quantity-spinner' value='" + data.quantity + "'></div><p class='delete-itemBx' onclick=Delete(this);><i class='fas fa-trash-alt'></i><span class='delete-item'>Remove</span></p></div></div>";
+	        	Data += "<div class='contentBx'><span class='contentBx-id'>" + data.price_id + "</span><div class='item-image'></div><div class='item-content'><h3>" + data.title + "</h3><div class='item-subcontent'><span class='item-price'>" + data.cost + "</span><input type='number' class='quantity-spinner' value='" + data.quantity + "'></div><p class='delete-itemBx' onclick=Delete(this);><i class='fas fa-trash-alt'></i><span class='delete-item'>Remove</span></p><p class='subtotal'></p></div></div>";
 	      	});
 	      	let c = JSON.parse(localStorage.getItem('details')).length;
 	      	Count += '<h1>GIỎ HÀNG CỦA BẠN ( ' + c + ' SẢN PHẨM )</h1>'; 
@@ -199,6 +231,12 @@
 
 	    $('.cart-header').html(Count);
 	    $('.content').html(Data);
+
+	    $('.subtotal').each(function(){
+			let subprice = $(this).parent().find('.item-subcontent .item-price').text();
+			let subquantity = $(this).parent().find('.item-subcontent input').val();
+			$(this).html(subprice*subquantity);
+		});
 
 	    $('.quantity-spinner').spinner({
 			min: 1,
@@ -210,6 +248,16 @@
 				let items = [];
 
 				let details = [];
+
+				let subprice = $(this).parent().parent().find('.item-price').text();
+				$(this).parent().parent().parent().find('.subtotal').html(subprice*quantity);
+
+				let total_price = 0;
+				$('.subtotal').each(function(){
+					let sub_item_price = $(this).text();
+					total_price += parseInt(sub_item_price);
+				});
+				$('.total-price').html(total_price);
 
 				let localItems = JSON.parse(localStorage.getItem("items"));
 				let localDetails = JSON.parse(localStorage.getItem("details"));
@@ -258,13 +306,13 @@
 
 	          	let no = JSON.parse(localStorage.getItem("items")).length;
           		$('.iconShopping p').html(no);
-
 			}
+
 		});
 
 		let no = JSON.parse(localStorage.getItem("items")).length;
         $('.iconShopping p').html(no);
-	
+		
 	}
 
 </script>
@@ -282,6 +330,16 @@
 				let items = [];
 
 				let details = [];
+
+				let subprice = $(this).parent().parent().find('.item-price').text();
+				$(this).parent().parent().parent().find('.subtotal').html(subprice*quantity);
+
+				let total_price = 0;
+				$('.subtotal').each(function(){
+					let sub_item_price = $(this).text();
+					total_price += parseInt(sub_item_price);
+				});
+				$('.total-price').html(total_price);
 
 				let localItems = JSON.parse(localStorage.getItem("items"));
 				let localDetails = JSON.parse(localStorage.getItem("details"));
@@ -437,4 +495,13 @@
 			$('#district').css("border", "1px solid #4caf50");
 		});
 	})
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#need-sign-in').click(function(){
+			alert("You need sign in to create an order!");
+			$('#js-click-login').click();
+		});
+	});
 </script>

@@ -621,7 +621,7 @@ a{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     padding-bottom: 20px;
 }
@@ -1494,6 +1494,8 @@ a{
         width: 100%;
         padding: 10px 0px;
         background: #fff;
+        border: none;
+        margin-bottom: 30px;
 
         .cart-header{
             width: 100%;
@@ -1501,6 +1503,7 @@ a{
             padding: 20px 0;
             padding-left: 30px;
             border-bottom: 1px solid #333;
+            padding-bottom: 0;
 
             h1{
                 font-family: arial;
@@ -1595,6 +1598,8 @@ a{
                         color: #007bff;
                         cursor: pointer;
                         margin: 0;
+                        float: left;
+                        margin-top: 15px;
 
                         .delete-item{
                             padding-left: 8px;
@@ -1604,12 +1609,35 @@ a{
                             color: #0056b3;
                         }
                     }
+
+                    .subtotal{
+                        float: right;
+                        margin: 0;
+                        margin-top: 15px;
+                        color: red;
+                        fomt-size: 18px;
+                    }
                 }
             }
         }
         .subFooter{
             padding: 30px 30px;
             width: 100%;
+
+            .totalBx{
+                margin: 0;
+                font-size: 16px;
+                color: #333;
+                float: right;
+                margin-right: 50px;
+                margin-top: 10px;
+
+                .total-price{
+                    color: red;
+                    font-size: 24px;
+                    font-weight: bold;
+                }
+            }
 
             #add_role_view{
                 float: right;
@@ -1620,7 +1648,18 @@ a{
                 margin-right: 30px;
                 padding: 10px 20px;
                 background: red;
-                transform: translateY(-25%);
+                border: none;
+            }
+
+            #need-sign-in{
+                float: right;
+                font-family: arial;
+                font-size: 18px;
+                color: #fff;
+                cursor: pointer;
+                margin-right: 30px;
+                padding: 10px 20px;
+                background: red;
                 border: none;
             }
         }
