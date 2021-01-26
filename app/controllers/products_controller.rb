@@ -11,7 +11,6 @@ class ProductsController < ApplicationController
   end
 
   def index
-
     unless params[:q]
       @products = if params[:title]
       Product.search_by_title(params[:title])
@@ -22,15 +21,10 @@ class ProductsController < ApplicationController
       @q = Product.ransack(params[:q])
       @products = @q.result
     end
+
     respond_to do |format|
       format.html {}
       format.json
-    end
-
-    if params[:filter_type]
-      @pagy, @products = pagy(Product.send(params[:filter_type]))
-    else
-      @pagy, @products = pagy(Product.all)
     end
 
   end

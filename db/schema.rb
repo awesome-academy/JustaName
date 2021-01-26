@@ -123,6 +123,8 @@ ActiveRecord::Schema.define(version: 2021_01_12_042807) do
   create_table "prices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.decimal "price", precision: 10
+    t.integer "cpu"
+    t.integer "ram"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_prices_on_product_id"

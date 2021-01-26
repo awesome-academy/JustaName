@@ -1,5 +1,7 @@
 require 'pagy/extras/bootstrap'
 
+require 'pagy/extras/array'
+
 require 'pagy/extras/items'
 Pagy::VARS[:items_param] = :items    # default
 Pagy::VARS[:max_items]   = 100       # default

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'shops/index'
   mount Ckeditor::Engine => '/ckeditor'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users,
@@ -31,6 +32,8 @@ Rails.application.routes.draw do
   get 'cart', to: 'carts#show'
 
   resources :orders, only: [:create, :index, :show]
+
+  resources :shops, only: :index
 
 end
 # as :user do

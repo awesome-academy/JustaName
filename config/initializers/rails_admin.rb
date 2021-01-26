@@ -33,7 +33,7 @@ RailsAdmin.config do |config|
   config.model Price do
      edit do
        # field :title
-       include_fields :product_id, :price, :configurations
+       include_fields :product_id, :price, :cpu, :ram, :configurations
        # field :model_id
      end
   end
