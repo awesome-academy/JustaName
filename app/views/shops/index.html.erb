@@ -125,7 +125,7 @@
 				<%= link_to(product_path(product)) do %>
 					<div class="contentBx">
 						<div class="contetn-img">
-							<%= image_tag product.product_photos.first.photo_url.to_s %>
+							<%= image_tag product.product_photos.first.photo_url.to_s, alt: product.product_photos.first.short_name %>
 						</div>
 						<%= link_to(product_path(product)) do %>
 							<%= product.title %>

@@ -6,14 +6,14 @@
 require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
-//= require ckeditor/init
-
 global.$ = require("jquery")
 require("jquery") // Don't really need to require this...
 require("jquery-ui")
 
 require("packs/jquery.easy-autocomplete.min")
 require("packs/jquery-ui")
+//= require ckeditor/init
+//= require cloudinary
 import "bootstrap"
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
